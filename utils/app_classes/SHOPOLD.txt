@@ -1,0 +1,379 @@
+import os
+import sqlite3
+import pandas as pd
+from datetime import datetime, timedelta
+import sys
+
+ROOT = "\\\\ominfstdpsd10001p-fs.int.okadamanila.com\\Casino\\Strategic Marketing\\Database Admin\\ETL\\Applications\\okada"
+sys.path.append(ROOT)
+from okada import SQL, SQLService
+loader = SQL("ENGAGE").get_loader()
+class ShopTransaction:
+    def __init__(self, db_path, db_name, table_name, user):
+        self.path = os.path.join(db_path, db_name)
+        self.table = table_name
+        self.user = user
+
+        log_dir = os.path.join(db_path, "logs")
+        os.makedirs(log_dir, exist_ok=True)
+        self.log_path = os.path.join(log_dir, f"{os.path.splitext(db_name)[0]}-logs.db")
+
+        self._create_logs_db()
+        self.create_db()
+
+    def get_halo(self, uid, start_date, end_date, halo_tagging):
+        sql = f"""
+                WITH subq AS (
+                    SELECT pr.PlayerID, ed.Name AS EventName,
+                        cast(convert(varchar(10), iif(datepart(hour, pr.RedemptionDate) < 6,
+                        dateadd(day, -1, pr.RedemptionDate), pr.RedemptionDate), 101) as date) as GameDate,
+                        prd.Returned, p.UniversalPlayerID
+                    FROM ENGAGEDB.AWA.UC_PL_PrizeRedemption pr
+                    LEFT JOIN ENGAGEDB.AWA.UC_X_EventDefinition ed ON pr.EventDefinitionID = ed.ID
+                    LEFT JOIN ENGAGEDB.AWA.UC_PL_PrizeRedemptionDetail prd ON pr.ID = prd.PrizeRedemptionID
+                    LEFT JOIN ENGAGEDB.dbo.UC_PL_Player p ON pr.PlayerID = p.PlayerID
+                )
+                SELECT * FROM subq
+                WHERE GameDate BETWEEN '{start_date}' AND '{end_date}'
+                AND UniversalPlayerID = '{uid}'
+                AND EventName like "%{halo_tagging}%"
+                AND Returned IS NULL
+            """
+        data = loader.load_data(sql)
+        
+        return data
+
+    def _create_logs_db(self):
+        conn = sqlite3.connect(self.log_path)
+        cursor = conn.cursor()
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS logs (
+                ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                timestamp TEXT NOT NULL,
+                user TEXT NOT NULL,
+                action TEXT NOT NULL,
+                status TEXT NOT NULL,
+                details TEXT
+            )
+        """)
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    def _log_transaction(self, action, status, details=None):
+        conn = sqlite3.connect(self.log_path)
+        cursor = conn.cursor()
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        cursor.execute("""
+            INSERT INTO logs (timestamp, user, action, status, details)
+            VALUES (?, ?, ?, ?, ?)
+        """, (timestamp, self.user, action, status, details))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    def create_db(self):
+        conn = sqlite3.connect(self.path)
+        cursor = conn.cursor()
+        try:
+            query = f"""
+            CREATE TABLE IF NOT EXISTS {self.table} (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                uid TEXT NOT NULL,
+                createddate TEXT NOT NULL,
+                updateddate TEXT NOT NULL,
+                item_id INTEGER NOT NULL,
+                item TEXT NOT NULL,
+                quantity INTEGER NOT NULL,
+                cost INTEGER NOT NULL,
+                total_cost INTEGER NOT NULL,
+                total_value INTEGER NOT NULL,
+                credits_used INTEGER NOT NULL,
+                cp_used INTEGER NOT NULL,
+                status TEXT NOT NULL
+            )
+            """
+            cursor.execute(query)
+            conn.commit()
+            self._log_transaction("CREATE_DB", "SUCCESS", f"Table {self.table} ready.")
+            return True
+        except Exception as e:
+            self._log_transaction("CREATE_DB", "ERROR", str(e))
+            return str(e)
+        finally:
+            cursor.close()
+            conn.close()
+
+    def add_transaction(self, uid, item_id, item_name, quantity, cost, total_val,credits_used, cp_used, status="pending"):
+        conn = sqlite3.connect(self.path)
+        cursor = conn.cursor()
+        try:
+            created = datetime.now()
+            created_str = created.strftime("%Y-%m-%d %H:%M:%S")
+            updated = created_str
+            total_cost = quantity * cost
+
+            cursor.execute(f"SELECT COALESCE(SUM(total_cost), 0) FROM {self.table} WHERE uid = ?", (uid,))
+            current_value = cursor.fetchone()[0]
+            total_value = total_val
+            cursor.execute(f"""
+                SELECT 1 
+                FROM {self.table}
+                WHERE uid = ?
+                and item_id = ?
+                AND item = ?
+                AND quantity = ?
+                AND cost = ?
+                AND ABS(
+                    strftime('%s', createddate) - strftime('%s', ?)
+                ) <= 30
+                LIMIT 1
+            """, (uid, item_id, item_name, quantity, cost, created_str))
+
+            duplicate = cursor.fetchone()
+            if duplicate:
+                self._log_transaction(
+                    "ADD_TRANSACTION", 
+                    "SKIPPED_DUPLICATE", 
+                    f"UID={uid}, Item={item_name}, Qty={quantity}, Cost={cost}, within 30s"
+                )
+                return False
+            cursor.execute(f"""
+                INSERT INTO {self.table} 
+                (uid, createddate, updateddate, item_id, item, quantity, cost, total_cost, total_value, credits_used, cp_used, status)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (uid, created_str, updated, item_id, item_name, quantity, cost, total_cost, total_value, credits_used, cp_used, status))
+            conn.commit()
+
+            self._log_transaction(
+                "ADD_TRANSACTION", 
+                "SUCCESS", 
+                f"UID={uid}, Item={item_name}, Qty={quantity}, Cost={cost}, Status={status}"
+            )
+            return True
+
+        except Exception as e:
+            self._log_transaction("ADD_TRANSACTION", "ERROR", str(e))
+            return str(e)
+        finally:
+            cursor.close()
+            conn.close()
+
+
+    def update_transaction(self, trans_id, item_id=None, item=None, quantity=None, cost=None, status=None):
+        conn = sqlite3.connect(self.path)
+        cursor = conn.cursor()
+        try:
+            updated = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+            cursor.execute(f"SELECT uid, item_id, item, quantity, cost, status FROM {self.table} WHERE id=?", (trans_id,))
+            row = cursor.fetchone()
+            if not row:
+                msg = f"No transaction found with ID={trans_id}"
+                self._log_transaction("UPDATE_TRANSACTION", "ERROR", msg)
+                return msg
+            uid, cur_item_id, cur_item, cur_qty, cur_cost, cur_status = row
+
+            new_item = item if item is not None else cur_item
+            new_qty = quantity if quantity is not None else cur_qty
+            new_cost = cost if cost is not None else cur_cost
+            new_status = status if status is not None else cur_status
+
+            update_values = []
+            update_columns = []
+            
+            if item is not None:
+                update_columns.append("item")
+                update_values.append(new_item)
+            if quantity is not None:
+                update_columns.append("quantity")
+                update_values.append(new_qty)
+            if cost is not None:
+                update_columns.append("cost")
+                update_values.append(new_cost)
+            if status is not None:
+                update_columns.append("status")
+                update_values.append(new_status)
+
+            if not update_columns:
+                return "❌ No valid fields to update."
+
+            if item_id is None:
+                item_id = cur_item_id 
+
+            update_columns.append("item_id")
+            update_values.append(item_id)
+
+            set_clause = ", ".join([f"{col} = ?" for col in update_columns])
+
+            cursor.execute(f"""
+                    UPDATE {self.table}
+                    SET {set_clause}, updateddate = ?
+                    WHERE id = ?
+                """, (*update_values, updated, trans_id))
+
+            cursor.execute(f"SELECT COALESCE(SUM(total_cost), 0) FROM {self.table} WHERE uid=?", (uid,))
+            new_value = cursor.fetchone()[0]
+            cursor.execute(f"UPDATE {self.table} SET total_value=? WHERE uid=?", (new_value, uid))
+
+            conn.commit()
+            self._log_transaction("UPDATE_TRANSACTION", "SUCCESS", f"Updated ID={trans_id}, Fields={', '.join(update_columns)}")
+            return True
+
+        except Exception as e:
+            self._log_transaction("UPDATE_TRANSACTION", "ERROR", str(e))
+            return str(e)
+
+        finally:
+            cursor.close()
+            conn.close()
+
+
+
+    def delete_transaction(self, trans_id):
+        conn = sqlite3.connect(self.path)
+        cursor = conn.cursor()
+        try:
+            cursor.execute(f"SELECT uid FROM {self.table} WHERE id=?", (trans_id,))
+            row = cursor.fetchone()
+            if not row:
+                msg = f"No transaction found with ID={trans_id}"
+                self._log_transaction("DELETE_TRANSACTION", "ERROR", msg)
+                return msg
+            uid = row[0]
+
+            cursor.execute(f"DELETE FROM {self.table} WHERE id=?", (trans_id,))
+
+            # Recalculate basket total_value
+            cursor.execute(f"SELECT COALESCE(SUM(total_cost), 0) FROM {self.table} WHERE uid=?", (uid,))
+            new_value = cursor.fetchone()[0]
+            cursor.execute(f"UPDATE {self.table} SET total_value=? WHERE uid=?", (new_value, uid))
+
+            conn.commit()
+            self._log_transaction("DELETE_TRANSACTION", "SUCCESS", f"Deleted transaction ID={trans_id}")
+            return True
+        except Exception as e:
+            self._log_transaction("DELETE_TRANSACTION", "ERROR", str(e))
+            return str(e)
+        finally:
+            cursor.close()
+            conn.close()
+
+    def show_transactions(self):
+        conn = sqlite3.connect(self.path)
+        try:
+            df = pd.read_sql_query(f"SELECT * FROM {self.table}", conn)
+            self._log_transaction("SHOW_TRANSACTIONS", "SUCCESS", f"Displayed {len(df)} records.")
+            return df
+        except Exception as e:
+            self._log_transaction("SHOW_TRANSACTIONS", "ERROR", str(e))
+            return str(e)
+        finally:
+            conn.close()
+
+    def search_transactions(self, uid=None, item_id=None, item=None, status=None, min_total=None, max_total=None):
+        conn = sqlite3.connect(self.path)
+        try:
+            query = f"SELECT * FROM {self.table} WHERE 1=1"
+            params = []
+            if uid:
+                query += " AND uid=?"
+                params.append(uid)
+            if item_id:
+                query += " AND item_id LIKE ?"
+                params.append(f"%{item_id}%")
+            if item:
+                query += " AND item LIKE ?"
+                params.append(f"%{item}%")
+            if status:
+                query += " AND status=?"
+                params.append(status)
+            if min_total is not None:
+                query += " AND total_cost >= ?"
+                params.append(min_total)
+            if max_total is not None:
+                query += " AND total_cost <= ?"
+                params.append(max_total)
+
+            df = pd.read_sql_query(query, conn, params=params)
+            self._log_transaction("SEARCH_TRANSACTIONS", "SUCCESS", f"Search done, {len(df)} results.")
+            return df
+        except Exception as e:
+            self._log_transaction("SEARCH_TRANSACTIONS", "ERROR", str(e))
+            return str(e)
+        finally:
+            conn.close()
+
+    def fetch_logs(self):
+        return pd.read_sql_query("SELECT * FROM logs", sqlite3.connect(self.log_path))
+    def is_redeemed(self, uid):
+        conn = sqlite3.connect(self.path)
+        try:
+            query = f"SELECT 1 FROM {self.table} WHERE uid = ? LIMIT 1"
+            df = pd.read_sql_query(query, conn, params=(uid,))
+
+            found = not df.empty
+            self._log_transaction(
+                "SHOW_TRANSACTIONS",
+                "SUCCESS",
+                f"UID={uid}, Redeemed={found}, Records={len(df)}"
+            )
+            return found
+        except Exception as e:
+            self._log_transaction("SHOW_TRANSACTIONS", "ERROR", str(e))
+            return False
+        finally:
+            conn.close()
+
+
+    def get_total_redeemed(self, uid):
+        conn = sqlite3.connect(self.path)
+        try:
+            query = f"SELECT SUM(quantity * cost) AS total_redeemed FROM {self.table} WHERE uid = ?"
+            
+            df = pd.read_sql_query(query, conn, params=(uid,))
+            
+            if df.empty or pd.isna(df['total_redeemed'].iloc[0]):
+                total_redeemed = 0
+            else:
+                total_redeemed = df['total_redeemed'].iloc[0]
+            
+            self._log_transaction(
+                "SHOW_TOTAL_REDEEMED",
+                "SUCCESS",
+                f"UID={uid}, Total Redeemed={total_redeemed}"
+            )
+            
+            return int(total_redeemed)
+        except Exception as e:
+            self._log_transaction("SHOW_TOTAL_REDEEMED", "ERROR", str(e))
+            return 0
+        finally:
+            conn.close()
+
+    def get_all_redemptions(self, uid):
+        conn = sqlite3.connect(self.path)
+        try:
+            # Query to fetch all relevant redemption data
+            query = f"""
+            SELECT uid, createddate, status, quantity, cost
+            FROM {self.table}
+            WHERE uid = ? 
+            """
+            #
+            # Read query result into a pandas DataFrame
+            df = pd.read_sql_query(query, conn, params=(uid,))
+            
+            # Check if the DataFrame is empty and return an empty list if so
+            if df.empty:
+                return []
+            
+            # If there are results, return the DataFrame as a list of dictionaries
+            return df.to_dict(orient='records')
+        
+        except Exception as e:
+            self._log_transaction("SHOW_ALL_REDEMPTIONS", "ERROR", str(e))
+            return []
+        
+        finally:
+            conn.close()

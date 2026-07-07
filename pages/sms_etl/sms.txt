@@ -1,0 +1,15 @@
+select universalplayerid as universalplayerid
+,firstname as firstname
+,lastname as lastname
+,mobile as mobile
+,prize as prize
+,prize1 as prize1
+,prize2 as prize2
+,prize3 as prize3
+,prize4 as prize4
+,promotionname as promotionname
+,channel as channel
+,createddate as createddate
+,blastdate as blastdate
+,eventid as eventid
+from  default.db_communications_blast;

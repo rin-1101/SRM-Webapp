@@ -1,0 +1,20 @@
+event_name: reels_for_relaxation_grand
+display_name: Reels For Relaxation Grand Draw
+times:
+- label: 10:00 PM
+  value: 10_00 PM
+prize:
+  start: 0
+  end: 10
+  increment: 1000
+  label: "Free Play"
+  extras:
+    - "OSIM Massage Chair Bundle"
+
+dates:
+  start: '2026-06-02'
+  end: '2026-06-30'
+  frequency_days: 7
+messages:
+  reset: Draw is about to Begin
+  next_draw: Next Draw is at 10PM

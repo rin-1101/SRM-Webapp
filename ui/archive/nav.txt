@@ -1,0 +1,57 @@
+from dash import html
+
+nav_bar = html.Nav(
+    className="navbar is-white has-shadow",
+    children=[
+        # Logo / Brand
+        html.Div(
+            className="navbar-brand",
+            children=[
+                html.A(
+                    className="navbar-item",
+                    children=[
+                        html.Img(
+                            src="./assets/home.png",
+                            style={"max-height": "50px"},
+                            className="py-2 px-2",
+                        ),
+                        html.Img(
+                            src="./assets/logo.png",
+                            style={"max-height": "50px"},
+                            className="py-2 px-2",
+                        ),
+                    ],
+                    href="/home",
+                ),
+                html.A(
+                    className="navbar-burger",
+                    id="burger",
+                    children=[
+                        html.Span(),  # Line 1
+                        html.Span(),  # Line 2
+                        html.Span(),  # Line 3a
+                    ],
+                ),
+            ],
+        ),
+        html.Div(
+            className="navbar-menu",
+            id="nav-links",
+            children=[
+                # Right Links
+                html.Div(
+                    className="navbar-end",
+                    children=[
+                        html.Div(
+                            className="navbar-item",
+                            children=html.A(
+                                id="login-status",
+                                className="button is-primary has-text-white",
+                            ),
+                        ),
+                    ],
+                )
+            ],
+        ),
+    ],
+)

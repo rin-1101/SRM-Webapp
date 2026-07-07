@@ -1,0 +1,62 @@
+,No,ITEM,Cost,Inventory,Category
+0,1,Php 280 worth of Dining Voucher,4,80,Category 1
+1,2,Muji Stainless Steel Whisk & Bowl,8,297,Category 2
+2,3,Muji Bath Dipper and Body Sponge with Jute Bag,8,297,Category 2
+3,4,Imarflex Flat Iron,8,6,Category 2
+4,5,Tough Mama Industrial Velocity Fan,8,11,Category 2
+5,6,Tough Mama Portable Blender Cup,8,10,Category 2
+6,7,Dowell Electric Desk Fan TF-616,8,11,Category 2
+7,8,Tough Mama Double Layered Electric Kettle,8,9,Category 2
+8,9,Black 18’ Stand Fan,8,0,Category 2
+9,10,Dowell 1.7 Electric Kettle,8,0,Category 2
+10,11,Dowell Electric Kettle Stainless,8,0,Category 2
+11,12,Dowell Electric Multicooker,8,0,Category 2
+12,13,Dowell Recheargeable Blender,8,18,Category 2
+13,14,Muji 2pcs Hand Towel and Soap Dish with Jute Bag,8,300,Category 2
+14,15,Tough Mama Econo Function Electric Grill,15,0,Category 3
+15,16,Dowell Rice Cooker,15,0,Category 3
+16,17,Promade Mood Bluetooth Speaker ,15,2,Category 3
+17,18,Tough Mama Handheld Iron & Steamer,15,31,Category 3
+18,19,Kyowa Coffee Maker 10 Cups,15,33,Category 3
+19,20,Dowell Oven Toaster,15,15,Category 3
+20,21,Kyowa Hotdog & Waffle Maker,15,8,Category 3
+21,22,Brikk Pop-Up Toaster,15,7,Category 3
+22,23,Imarflex 2-Slice Waffle Maker,15,48,Category 3
+23,24,Dowell Box Fan,15,23,Category 3
+24,25,Tough Mama Handmixer,15,85,Category 3
+25,26,Tefal Natural Force Frying Pan,15,90,Category 3
+26,27,Kyowa Pop-Up Toaster,15,23,Category 3
+27,28,ETC Microfiber Fleece Blanket,15,260,Category 3
+28,29,Dowell Air Cooler,25,0,Category 4
+29,30,Brikk Rice Cooker,25,6,Category 4
+30,31,Tough Mama Stainless Multicooker w/ Steamer,25,38,Category 4
+31,32,Daewoo Rechargeable Bladeless Fan,25,2,Category 4
+32,33,Dowell Personal Blender,25,28,Category 4
+33,34,Dowell Induction Cooker,25,45,Category 4
+34,35,2 Bottles Black Label,25,5,Category 4
+35,36,Daewoo Steam Iron,25,29,Category 4
+36,37,Dowell Juice Extractor,25,0,Category 4
+37,38,Blakk Tower Fan,25,5,Category 4
+38,39,Kyowa Rice Cooker With Steamer,25,8,Category 4
+39,40,Daewoo 2-Slice Bread Toaster,25,10,Category 4
+40,41,Brikk Mini Cassette Stove,25,0,Category 4
+41,42,Muji Tableware Bundle,25,99,Category 4
+42,43,Muji Self-Care Bundle,40,55,Category 5
+43,44,Noerden Minimi Smart Scale,40,54,Category 5
+44,45,"West Elm Briggs Flatware, 5 Piece Set",40,55,Category 5
+45,46,Camus Vsop Brandy,40,47,Category 5
+46,47,Muji Soft Bundle ,40,54,Category 5
+47,48,Glenlivet 15Yrs 700ml,40,31,Category 5
+48,49,Muji Aroma Bundle,60,16,Category 6
+49,50,West Elm Horizon Crystal Gold Rimmed Glassware,80,8,Category 7
+50,51,Noerden Flow UV Hot Water Dispenser,80,8,Category 7
+51,52,Pottery Barn Bleecker Ice Bucket Antique Gold,80,8,Category 7
+52,53,Pottery Barn Towel Bundle,80,8,Category 7
+53,54,Muji Storage Box with Reusable Shopping Bag,80,8,Category 7
+54,0,280 Freeplay,4,0,Category 1
+55,0,560 Freeplay,8,0,Category 2
+56,0,1050 Freeplay,15,0,Category 3
+57,0,1750 Freeplay,25,0,Category 4
+58,0,2800 Freeplay,40,0,Category 5
+59,0,4200 Freeplay,60,0,Category 6
+60,0,5600 Freeplay,80,0,Category 7

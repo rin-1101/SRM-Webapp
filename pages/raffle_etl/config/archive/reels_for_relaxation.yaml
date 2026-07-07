@@ -1,0 +1,21 @@
+event_name: reels_for_relaxation
+
+display_name: Reels for Relaxation
+
+times:
+  - label: 10:00 PM
+    value: 10_00 PM
+
+prize:
+  start: 10000
+  end: 100000
+  increment: 10000
+
+dates:
+  start: "2026-06-01"
+  end: "2026-07-31"
+  frequency_days: 7
+
+messages:
+  reset: Draw is about to Begin
+  next_draw: Next Draw is at 10PM

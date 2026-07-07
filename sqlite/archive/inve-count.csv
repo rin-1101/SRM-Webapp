@@ -1,0 +1,62 @@
+,No,ITEM,Cost,Inventory,Category
+0,1,Php 280 worth of Dining Voucher,4,126,Category 1
+1,2,Stainless Steel Mixing Bowl with Whisk,8,299,Category 2
+2,3,Bath Dipper and Body Sponge,8,300,Category 2
+3,4,Flat Iron,8,0,Category 2
+4,5,Industrial Fan,8,29,Category 2
+5,6,Portable Blender,8,18,Category 2
+6,7,Desk Fan,8,18,Category 2
+7,8,Double Layered Electric Kettle,8,8,Category 2
+8,9,Stand Fan,8,0,Category 2
+9,10,1.7 Electric Kettle,8,12,Category 2
+10,11,Electric Kettle,8,24,Category 2
+11,12,Multi Cooker,8,6,Category 2
+12,13,Rechargable Blender,8,27,Category 2
+13,14,2pcs Bath Towels and Foam Soap Dish,8,299,Category 2
+14,15,Electric Griller,8,2,Category 2
+15,16,Rice Cooker,8,3,Category 2
+16,17,Bluetooth Speaker,8,3,Category 2
+17,18,Handheld Iron and Steamer,8,35,Category 2
+18,19,Coffee Maker,8,39,Category 2
+19,20,Oven Toaster,8,17,Category 2
+20,21,Hotdog Waffle Maker,8,8,Category 2
+21,22,Pop-Up Toaster,8,9,Category 2
+22,23,Waffle Maker,8,49,Category 2
+23,24,Box Fan,8,31,Category 2
+24,25,HandMixer,8,86,Category 2
+25,26,Frying Pan,8,93,Category 2
+26,27,Pop-Up Toaster,8,23,Category 2
+27,28,Microfiber Fleece Blanket,8,268,Category 2
+28,29,Air Cooler,25,7,Category 3
+29,30,Rice Cooker,25,7,Category 3
+30,31,Stainless Steel Steamer,25,37,Category 3
+31,32,Rechargable Bladeless Fan,25,5,Category 3
+32,33,Blender,25,28,Category 3
+33,34,Induction Cooker,25,49,Category 3
+34,35,2pcs Black Label,25,23,Category 3
+35,36,Steam Iron,25,30,Category 3
+36,37,Juice Extractor,25,3,Category 3
+37,38,Tower Fan,25,15,Category 3
+38,39,Rice Cooker w/ Steamer,25,13,Category 3
+39,40,2Slice Bread Toaster,25,11,Category 3
+40,41,Portable Cassette Stove,25,0,Category 3
+41,42,"Small/Medium/Large Bowl and Plate, and Mug",25,100,Category 3
+42,43,"Face Towel, Cotton Puff, Toothbrush and Stand, Nail Clipper w/Case, Scissors, Shower Brush, and Body Sponge",40,55,Category 4
+43,44,Smart Weighing Scale,40,55,Category 4
+44,45,Flatware Set,40,55,Category 4
+45,46,Camus Vsop Brandy,40,47,Category 4
+46,47,"Cushion and Mini Cushion, Shoulder Bag, Reusable Shopping Bag",40,55,Category 4
+47,48,Glenlivet Scotch Whiskey,40,32,Category 4
+48,49,"24pcs Incense Stick w/ Stand, and Difuser",60,16,Category 6
+49,50,Crystal Gold Rimmed Glassware,80,8,Category 7
+50,51,Hot Water Dispenser,80,8,Category 7
+51,52,Ice Bucket,80,8,Category 7
+52,53,"Wash, Hand, and Bath Towel (Navy, Gray, Toupe)",80,8,Category 7
+53,54,"Storage Box, and Reusable Shopping Bag",80,8,Category 7
+54,0,200 Freeplay,4,99999999,Category 1
+55,0,500 Freeplay,8,99999999,Category 2
+56,0,1000 Freeplay,15,99999999,Category 3
+57,0,1700 Freeplay,25,99999999,Category 4
+58,0,2800 Freeplay,40,99999999,Category 5
+59,0,4200 Freeplay,60,99999999,Category 6
+60,0,5600 Freeplay,80,99999999,Category 7

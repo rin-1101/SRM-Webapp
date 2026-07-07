@@ -1,0 +1,17 @@
+
+@import url("/assets/shop/shop.css");
+
+#main-container-dyson {
+    /* Black / gold palette, swapped in for this module only */
+    --shop-accent-1: #f5e3a8;   /* pale champagne highlight */
+    --shop-accent-2: #d4af37;   /* classic gold */
+    --shop-accent-3: #a8792f;   /* warm bronze */
+    --shop-accent-4: #6b4a1e;   /* deep antique gold */
+
+    --shop-base-1:   #2b2318;   /* dark bronze-black */
+    --shop-base-2:   #191410;   /* near-black warm */
+    --shop-base-3:   #0d0a07;   /* deep charcoal-black */
+    --shop-base-4:   #050403;   /* true black */
+
+    --shop-bg-image: url('/assets/dyson/bg.png');
+}

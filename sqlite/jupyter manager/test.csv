@@ -1,0 +1,149 @@
+id,name,cost,inventory,category
+1,Php 280 worth of Dining Voucher,4,1,Category 1
+2,Muji Stainless Steel Whisk & Bowl,8,10,Category 2
+3,Muji Bath Dipper and Body Sponge with Jute Bag,8,1,Category 2
+4,Imarflex Flat Iron,8,0,Category 2
+5,Tough Mama Industrial Velocity Fan,8,2,Category 2
+6,Tough Mama Portable Blender Cup,8,0,Category 2
+7,Dowell Electric Desk Fan TF-616,8,0,Category 2
+8,Tough Mama Double Layered Electric Kettle,8,0,Category 2
+9,Black 18’ Stand Fan,8,0,Category 2
+10,Dowell 1.7 Electric Kettle,8,0,Category 2
+11,Dowell Electric Kettle Stainless,8,0,Category 2
+12,Dowell Electric Multicooker,8,0,Category 2
+13,Dowell Recheargeable Blender,8,2,Category 2
+14,Muji 2pcs Hand Towel and Soap Dish with Jute Bag,8,41,Category 2
+15,Tough Mama Econo Function Electric Grill,15,0,Category 3
+16,Dowell Rice Cooker,15,0,Category 3
+17,Promade Mood Bluetooth Speaker ,15,0,Category 3
+18,Tough Mama Handheld Iron & Steamer,15,0,Category 3
+19,Kyowa Coffee Maker 10 Cups,15,1,Category 3
+20,Dowell Oven Toaster,15,0,Category 3
+21,Kyowa Hotdog & Waffle Maker,15,0,Category 3
+22,Brikk Pop-Up Toaster,15,0,Category 3
+23,Imarflex 2-Slice Waffle Maker,15,0,Category 3
+24,Dowell Box Fan,15,29,Category 3
+25,Tough Mama Handmixer,15,0,Category 3
+26,Tefal Natural Force Frying Pan,15,0,Category 3
+27,Kyowa Pop-Up Toaster,15,0,Category 3
+28,ETC Microfiber Fleece Blanket,15,25,Category 3
+29,Dowell Air Cooler,25,0,Category 4
+30,Brikk Rice Cooker,25,0,Category 4
+31,Tough Mama Stainless Multicooker w/ Steamer,25,17,Category 4
+32,Daewoo Rechargeable Bladeless Fan,25,0,Category 4
+33,Dowell Personal Blender,25,27,Category 4
+34,Dowell Induction Cooker,25,0,Category 4
+35,2 Bottles Black Label,25,0,Category 4
+36,Daewoo Steam Iron,25,31,Category 4
+37,Dowell Juice Extractor,25,0,Category 4
+38,Blakk Tower Fan,25,0,Category 4
+39,Kyowa Rice Cooker With Steamer,25,0,Category 4
+40,Daewoo 2-Slice Bread Toaster,25,1,Category 4
+41,Brikk Mini Cassette Stove,25,0,Category 4
+42,Muji Tableware Bundle,25,0,Category 4
+43,Muji Self-Care Bundle,40,17,Category 5
+44,Noerden Minimi Smart Scale,40,3,Category 5
+45,"West Elm Briggs Flatware, 5 Piece Set",40,0,Category 5
+46,Camus Vsop Brandy,40,2,Category 5
+47,Muji Soft Bundle ,40,1,Category 5
+48,Glenlivet 15Yrs 700ml,40,1,Category 5
+49,Muji Aroma Bundle,60,2,Category 6
+50,West Elm Horizon Crystal Gold Rimmed Glassware,80,0,Category 7
+51,Noerden Flow UV Hot Water Dispenser,80,0,Category 7
+52,Pottery Barn Bleecker Ice Bucket Antique Gold,80,5,Category 7
+53,Pottery Barn Towel Bundle,80,1,Category 7
+54,Muji Storage Box with Reusable Shopping Bag,80,0,Category 7
+55,Linen and Homes Fresh Duo ,8,6,Category 2
+56,Tough Mama 4in1 Multi Cooler with Handle,8,0,Category 2
+57,Tough Mama Flat Iron Non-Stick Soleplated,8,4,Category 2
+58,Tough Mama Portable Travel Jug,8,26,Category 2
+59,Dowell Handheld USB Fan,8,11,Category 2
+60,Eureka Electric Blender 1.25,8,0,Category 2
+61,Imarflex Portable Hair Dryer HD-2316FCC0,8,0,Category 2
+62,Baumann On The Go Blender,8,0,Category 2
+63,Kyowa Pancake and Burger Maker KW-2628,8,4,Category 2
+64,Kyowa Glass Electric Kettle 1.8L,8,0,Category 2
+65,3D Water Kettle PK-17GS,15,3,Category 3
+66,Imarflex Electric Kettle IK317P,15,0,Category 3
+67,Imarflex Pop-UP Toaster IS-52 EA,15,124,Category 3
+68,Blakk Coffee Maker 10 Cups,15,3,Category 3
+69,American Heritage Waffle Maker,15,2,Category 3
+70,Blakk Rice Cooker 10 Cups,15,46,Category 3
+71,Dowell Blender BL-015G,15,0,Category 3
+72,"Eureka Desk Fan 16"" EDF16EXCEL",15,1,Category 3
+73,Eureka Oven Toaster,15,0,Category 3
+74,Eureka Wall Fan 16ECO,15,0,Category 3
+75,Linen and Homes Pillow Case 20x30,15,2,Category 3
+76,Linen and Homes Pillow Case 20x40,25,1,Category 4
+77,L'Oocitane Soap Trio,25,32,Category 4
+78,L'Oocitane Shea Verbena Gift Set,40,4,Category 5
+79,L'Oocitane Osmanthus Gift Set,40,0,Category 5
+80,L'Oocitane Herbae Gift Set,40,0,Category 5
+81,L'Oocitane Neroli & Orchidee Gift Set ,40,1,Category 5
+82,L'Oocitane Verbena Gift Set,40,0,Category 5
+83,L'Oocitane Cedrat EDT Gift Set,60,1,Category 6
+84,L'Oocitane CAP Cedrat EDT Gift Set,60,2,Category 6
+85,L'Oocitane Almond Gift Set,60,2,Category 6
+86,Acca Kappa White Moss Gift Set,60,5,Category 6
+87,Acca Kappa Sakura Tokyo Gift Set,60,0,Category 6
+88,Acca Kappa Mandarin and Green Tea Gift Set,60,13,Category 6
+89,Acca Kappa Green Mandarin Gift Set,60,15,Category 6
+90,Acca Kappa Eau De Cologne Gift Set,80,0,Category 7
+91,Marshall Bluetooth Speaker ,80,0,Category 7
+92,Crossett Single Burner Gas Stove,8,0,Category 2
+93,Crossett Box Fan,15,0,Category 3
+94,San Miguel Premium All-Malt 330 mL Can Bundle of 6,8,1,Category 2
+95,San Miguel Cerveza Negra 330ml Can Bundle of 6,8,10,Category 2
+96,San Miguel Cerveza Blanca 330ml Can Bundle of 6,8,11,Category 2
+97,San Miguel Super Dry 330 mL Can Bundle of 6,8,3,Category 2
+98,San Miguel Light 330 mL Can Bundle of 12,8,0,Category 2
+99,San Miguel Pale Pilsen Can 330ml x 24,15,0,Category 3
+100,Thermos Vacuum Insulated Jug 1.5L,15,1,Category 3
+101,Cool Daddy Electric Kettle,8,1,Category 2
+102,Tough Mama Portable Gas Stove,8,0,Category 2
+103,Eureka Dry Iron,8,18,Category 2
+104,Cool Daddy Food Chopper ,8,0,Category 2
+105,Kuchenluxe Electric Kettle with Thermostat,8,0,Category 2
+106,Tough Mama Rice Cooker,8,0,Category 2
+107,Hanabishi Coffee Maker,15,0,Category 3
+108,Tough Mama Single Burner Glass Gas Stove,15,0,Category 3
+109,Hanabisihi Industrial Floor Fan,15,0,Category 3
+110,Dowell Indoor Griller,15,21,Category 3
+111,Metro Primera Non-Stick Dutch Oven (Marble Collection),15,0,Category 3
+112,Cool Daddy Single Burner Electric Stove,8,3,Category 2
+113,Kyowa Sandwich Toaster,8,3,Category 2
+114,Egg Steamer and Cooker,8,0,Category 2
+115,"Urban Desk Fab 16""",8,1,Category 2
+116,Firefly Pocket Fan High Speed,8,1,Category 2
+117,Tough mama 2in1 Hair Shaver,8,2,Category 2
+118,Cool Daddy Glass Blender,15,0,Category 3
+119,Metro Primera Non-Stick Dutch Oven (Ribbed Collection),15,4,Category 3
+120,Hanabishie Rice Cooker Jar,15,0,Category 3
+121,American Heritage Waffle Maker V2,15,2,Category 3
+122,Xiaomi Water Flosser,15,0,Category 3
+123,Cool Daddy Vacuum Portable Cleaner,15,1,Category 3
+124,Westinghouse Steam Iron,15,0,Category 3
+125,Xiaomi Desk Lamp,15,0,Category 3
+126,Eureka Water Purifier,15,0,Category 3
+127,Surplus Dashboard Camera,15,0,Category 3
+128,"Mitsutech 16"" Fan",15,0,Category 3
+129,Ace Charcoal Table Griller,15,0,Category 3
+130,Ace Spin Mop,15,0,Category 3
+131,Hanabishi Garment Steamer,15,0,Category 3
+132,Hanabishi Insect Killer,25,2,Category 4
+133,American Tourister 5in1 Travel Kit,25,0,Category 4
+134,Lifetime Folding Chair,25,14,Category 4
+135,Titan All Metal Watch,25,16,Category 4
+136,Sassoon Hair Straightener,25,1,Category 4
+137,Cherry Mini Speaker,25,1,Category 4
+138,Cherry Portable Juice Blender,25,1,Category 4
+139,Ace Clothes Drying Rack,25,11,Category 4
+140,Lifetime Personal Table,25,2,Category 4
+141,Cherry Smart Wellness Knee Wrap,25,1,Category 4
+142,Cherry Fruit and & Vegetable Sterilizer,25,12,Category 4
+143,Hanabishi Oven Toaster,25,0,Category 4
+144,"Asahi 9"" Desk Fan",25,1,Category 4
+145,Black Daimaru Insect Killer,25,0,Category 4
+146,US Tradition 2L Meat Grinder,15,0,Category 3
+147,"ACE 19"" Double Glass LED TV",25,0,Category 4
+148,"TOUGH MAMA, 5-IN-1 FOOD PROCESSOR GENIE",25,18,Category 4
