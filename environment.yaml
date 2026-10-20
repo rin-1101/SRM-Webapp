@@ -1,0 +1,20 @@
+name: reports-local
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - flask
+  - pandas
+  - pyyaml
+  - openpyxl
+  - requests
+  - sqlalchemy
+  - pip:
+      - dash
+      - dash-auth
+      - flask-login
+      - flask-session
+      - flask-sqlalchemy
+      - ldap3

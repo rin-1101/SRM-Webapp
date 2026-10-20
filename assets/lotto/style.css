@@ -1,0 +1,329 @@
+.lotto-page {
+    min-height: calc(100vh - 3.25rem);
+    padding: 2rem 1rem;
+    background: linear-gradient(145deg, #071c33, #0d355b);
+    color: #172033;
+}
+
+.lotto-card {
+    width: min(100%, 52rem);
+    margin: 0 auto;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    border-radius: 1.5rem;
+    background: #ffffff;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.28);
+}
+
+.lotto-results-card {
+    width: min(100%, 72rem);
+}
+
+.lotto-header {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.lotto-kicker {
+    margin: 0 0 0.35rem;
+    color: #b8860b;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+}
+
+.lotto-title {
+    margin: 0;
+    color: #092947;
+    font-size: clamp(2rem, 6vw, 3.4rem);
+    line-height: 1.05;
+}
+
+.lotto-subtitle {
+    margin: 0.75rem 0 0;
+    color: #667085;
+}
+
+.lotto-player-field {
+    display: grid;
+    gap: 0.45rem;
+    margin-bottom: 1.5rem;
+    color: #344054;
+    font-weight: 700;
+}
+
+.lotto-player-input {
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.8rem;
+    color: #172033;
+    font: inherit;
+    font-weight: 500;
+}
+
+.lotto-player-input:focus {
+    border-color: #1769aa;
+    box-shadow: 0 0 0 3px rgba(23, 105, 170, 0.16);
+    outline: 0;
+}
+
+.lotto-number-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(2.5rem, 1fr));
+    gap: 0.65rem;
+}
+
+.lotto-number-button {
+    aspect-ratio: 1;
+    min-width: 0;
+    border: 2px solid #bfd0df;
+    border-radius: 50%;
+    background: #f8fafc;
+    color: #17324d;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 120ms ease, background 120ms ease, color 120ms ease;
+}
+
+.lotto-number-button:hover {
+    border-color: #1769aa;
+    transform: translateY(-1px);
+}
+
+.lotto-number-button.is-selected {
+    border-color: #e0ad24;
+    background: #f5c84c;
+    color: #102a43;
+    box-shadow: 0 0.35rem 0.8rem rgba(184, 134, 11, 0.25);
+}
+
+.lotto-selection-status {
+    margin: 1rem 0;
+    color: #475467;
+    font-weight: 700;
+    text-align: center;
+}
+
+.lotto-primary-button,
+.lotto-secondary-button {
+    width: 100%;
+    min-height: 3.4rem;
+    padding: 0.8rem 1.25rem;
+    border: 0;
+    border-radius: 0.8rem;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.lotto-primary-button {
+    background: #1769aa;
+    color: #ffffff;
+}
+
+.lotto-primary-button:hover {
+    background: #10598f;
+}
+
+.lotto-secondary-button {
+    border: 1px solid #1769aa;
+    background: #ffffff;
+    color: #1769aa;
+}
+
+.lotto-result-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.lotto-message {
+    min-height: 1.5rem;
+    margin-top: 1rem;
+    overflow-wrap: anywhere;
+    text-align: center;
+}
+
+.lotto-message.is-error {
+    color: #b42318;
+}
+
+.lotto-message.is-success {
+    color: #067647;
+}
+
+.lotto-result-groups {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.lotto-result-group {
+    display: grid;
+    gap: 0.6rem;
+}
+
+.lotto-group-title {
+    margin: 0;
+    color: #092947;
+    font-size: 1.1rem;
+}
+
+.lotto-table-wrap {
+    overflow-x: auto;
+    border: 1px solid #dbe3ec;
+    border-radius: 0.8rem;
+}
+
+.lotto-results-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lotto-results-table th,
+.lotto-results-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #e8edf3;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.lotto-results-table th {
+    background: #f4f7fa;
+    color: #475467;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.lotto-empty-result {
+    color: #667085;
+    text-align: center !important;
+}
+
+.lotto-ticket-search {
+    display: grid;
+    grid-template-columns: minmax(12rem, 1fr) auto auto;
+    gap: 0.65rem;
+}
+
+.lotto-ticket-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.lotto-ticket {
+    display: grid;
+    gap: 0.65rem;
+    padding: 1.25rem;
+    border: 1px dashed #7b91a8;
+    border-radius: 1rem;
+    background: #ffffff;
+    text-align: center;
+}
+
+.lotto-ticket-kicker {
+    margin: 0;
+    color: #b8860b;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+}
+
+.lotto-ticket-player {
+    margin: 0;
+    color: #092947;
+    font-size: 1.5rem;
+}
+
+.lotto-ticket-time {
+    margin: 0;
+    color: #667085;
+    font-size: 0.85rem;
+}
+
+.lotto-ticket-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.45rem;
+}
+
+.lotto-ticket-number {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #f5c84c;
+    color: #102a43;
+    font-weight: 800;
+}
+
+.lotto-ticket-print-button {
+    margin-top: 0.35rem;
+}
+
+.lotto-print-area {
+    display: none;
+}
+
+@media print {
+    body * {
+        visibility: hidden !important;
+    }
+
+    .lotto-print-area,
+    .lotto-print-area * {
+        visibility: visible !important;
+    }
+
+    .lotto-print-area {
+        position: absolute;
+        inset: 0;
+        display: grid !important;
+        place-items: start center;
+        width: 100%;
+        padding: 1.5cm;
+        background: #ffffff;
+    }
+
+    .lotto-print-area .lotto-ticket {
+        width: 16cm;
+        min-height: 9cm;
+        align-content: center;
+        border: 2px dashed #172033;
+        box-shadow: none;
+    }
+}
+
+@media (max-width: 40rem) {
+    .lotto-page {
+        padding: 1rem 0.65rem;
+    }
+
+    .lotto-card {
+        padding: 1.25rem 0.8rem;
+        border-radius: 1rem;
+    }
+
+    .lotto-number-grid {
+        gap: 0.35rem;
+    }
+
+    .lotto-number-button {
+        font-size: 0.85rem;
+    }
+
+    .lotto-result-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .lotto-ticket-search {
+        grid-template-columns: 1fr;
+    }
+}

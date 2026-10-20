@@ -1,0 +1,127 @@
+roles:
+  shop:
+    - admin
+    - smheads
+    - maraffle
+    - raffle
+    - poheads
+    - pne
+    - overcomp
+    - cops
+    - bdheads
+    - bdlocal
+    - bd
+  raffle:
+    - admin
+    - smheads
+    - raffle
+    - maraffle
+    - poheads
+    - pne
+    - overcomp
+    - cops
+    - bdheads
+    - bdlocal
+    - bd
+  raffle-LM:
+    - admin
+    - smheads
+    - raffle
+    - maraffle
+    - poheads
+    - pne
+    - overcomp
+    - cops
+    - bdheads
+    - bdlocal
+    - bd
+    - loyalty
+
+pages:
+  /redemption:
+    name: Redemption Report
+    access_level: [admin, smheads, sm, loyalty, pne, bs, bsheads, dm, ga, ca, pneset, audit, maraffle, overcomp]
+  /redemptiondaily:
+    name: Redemption Daily
+    access_level: [admin, smheads, sm, loyalty, pne, bs, bsheads, dm, ga, ca, pneset, audit, maraffle, overcomp]
+  /casinoslip:
+    name: Casino Slip
+    access_level: [admin, smheads, sm, ga, ca, bsheads]
+  /loyalty:
+    name: Loyalty Report
+    access_level: [admin, smheads, loyalty]
+  /inventory:
+    name: Inventory
+    access_level: [admin, smheads, maraffle, raffle, poheads, pne, overcomp, cops, bdheads]
+  /transactions:
+    name: Transactions
+    access_level: [admin, smheads, maraffle, poheads, pne, overcomp, cops, bdheads]
+  /transactions-view:
+    name: Transactions View
+    access_level: [admin, smheads, maraffle, raffle, poheads, pne, overcomp, cops, bdheads]
+  /comms:
+    name: Communications
+    access_level: [admin, smheads, maraffle, raffle, poheads, overcomp, cops, bdheads, bd, bdlocal, bdna, bdsea]
+  /patron:
+    name: Patron Database
+    access_level: [admin, smheads, bdheads, bd, cops, maraffle, poheads]
+  /bd-earn-and-get:
+    name: BD Earn and Get
+    access_role_group: shop
+  /bd-earn-and-get-view:
+    name: BD Earn and Get View
+    access_role_group: shop
+  /mickey:
+    name: Mickey
+    access_role_group: shop
+  # /WHITELIST:
+  #   name: WhiteList
+  #   access_role_group: raffle
+  /entitlement:
+    name: Entitlement
+    access_level: [admin, smheads, maraffle, raffle, poheads, overcomp, cops, bdheads, bd, bdlocal, bdna, bdsea]  
+  /backend:
+    name: Raffle Backend
+    access_role_group: raffle
+  /snowball-mania-raffle:
+    name: Snowball Mania
+    access_role_group: raffle
+  /highlimit-raffle-checker:
+    name: HighLimit Raffle Checker
+    access_role_group: raffle
+  /tier-upgrade-checker:
+    name: Tier Upgrade Checker
+    access_role_group: raffle-LM
+  /duplicate-checker:
+    name: Duplicate Checker
+    access_role_group: raffle
+  /wicked-wheels:
+    name: Wicked Wheels
+    access_role_group: raffle
+  /1m-raffle-nsu:
+    name: 1M Raffle NSU
+    access_role_group: raffle-LM
+  /1m-raffle-kiosk:
+    name: 1M Raffle KIOSK
+    access_role_group: raffle-LM
+  /lotto:
+    name: Lotto
+    access_role_group: raffle-LM
+  /lotto-results:
+    name: Lotto Results
+    access_role_group: raffle-LM
+  /lotto-tickets:
+    name: Lotto Tickets
+    access_role_group: raffle-LM
+  /pu-raffle:
+    name: Profile Update Raffle
+    access_role_group: raffle-LM
+  /overcomp:
+    name: Overcomp
+    access_role_group: smheads
+  /ssl:
+    name: SSL Certificate
+    access_level: [admin]
+  /cops:
+    name: COPS
+    access_level: [admin]

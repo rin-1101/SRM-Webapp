@@ -1,0 +1,24 @@
+NSU:
+  - name: Overnight Stay at Manila Bay Suite with Breakfast for 4
+    category: GRAND PRIZE
+    limit: 2
+    aliases: [Overnight Stay at Manila Bay Suite with Breakfast]
+  - name: Overnight Stay at Grand Deluxe with Breakfast for 4
+    category: MAJOR PRIZE
+    limit: 3
+    aliases: [Overnight Stay at Grand Deluxe with Breakfast]
+  - name: PHP 5,000 worth of Dining or Wellness Voucher
+    category: MINOR PRIZE
+    limit: 5
+KIOSK:
+  - name: Overnight Stay at the Sky Villa with Breakfast for 4
+    category: GRAND PRIZE
+    limit: 2
+    aliases: [Overnight Stay at Sky Villa with Breakfast]
+  - name: PHP 20,000 worth of Free Play
+    category: MAJOR PRIZE
+    limit: 3
+  - name: PHP 10,000 worth of Dining or Wellness Voucher
+    category: MINOR PRIZE
+    limit: 5
+    aliases: [PHP10,000 worth of Dining or Wellness vouchers]

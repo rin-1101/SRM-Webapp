@@ -1,7 +1,7 @@
 import dash
-from dash import Dash, dcc, html, dash_table, Input, Output, State, callback
+from dash import Dash, no_update, dcc, html, dash_table, Input, Output, State, callback
 import pandas as pd
-from io import BytesIO
+from io import BytesIO, StringIO
 import base64
 
 # Application Imports
@@ -24,7 +24,8 @@ logger = LogService("redemptiondaily-dashboard").get_logger()
 
 def get_redemption(gdate, preview=True):
     loader = SQL("datamart").get_loader()
-    _limit = "LIMIT 5" if preview else ""
+    eng_loader = SQL("engage").get_loader()
+    _limit = ""
     query = f"""
     SELECT universalplayerid, eventname, 
     prizename, prizedesc, prizevalue, redemptionamount, bucketrequired, 
@@ -33,9 +34,36 @@ def get_redemption(gdate, preview=True):
     WHERE redemptiongamedate =  '{gdate}'
     {_limit}
     """
+    logger.info(query)
     # logger.info(f"{current_user.id} has executed \n {query}")
     df = loader.load_data(query)
     df["redemptiondate"] = pd.to_datetime(df["redemptiondate"])
+
+    halo_df = df[df["config_sys"] == "Halo"]
+    query2 = f"""
+        select 
+        pr.id as voucherno, o.Comments, r.OverrideReason
+        from engagedb.awa.UC_PL_PrizeRedemption pr
+        join engagedb.awa.UC_X_EventDefinition ed on pr.EventDefinitionID = ed.id 
+        join engagedb.dbo.UC_L_OverrideLog o on pr.id = o.TransactionID
+        join engagedb.dbo.UC_X_OverrideReason r on o.ReasonID = r.id 
+        where pr.id in {tuple(halo_df["voucherno"])}
+        order by pr.ID desc
+    """
+    logger.info(query2)
+    comments_df = eng_loader.load_data(query2)
+    comments_df["voucherno"] = (
+        comments_df["voucherno"]
+        .astype(str)
+        .str.strip()
+    )
+    df["voucherno"] = (
+        df["voucherno"]
+        .astype(str)
+        .str.strip()
+    )
+    df = df.merge(comments_df, on="voucherno", how="left")
+
     return df
 
 
@@ -113,52 +141,55 @@ def _layout():
                     )
                 ],
             ),
+            dcc.Store(id="redemption-daily-data-store"),
+            dcc.Download(id="download-data-redemption_reddaily"),
             dcc.Loading(html.Div(id="output-data_reddaily")),
         ]
     )
 
-
 @callback(
     Output("output-data_reddaily", "children"),
+    Output("download-data-redemption_reddaily", "data"),
     Input("submit-button_reddaily", "n_clicks"),
     State("start-date_reddaily", "date"),
+    prevent_initial_call=True,
 )
-def display_data(n_clicks, start_date_reddaily):
+def display_and_download(n_clicks, start_date_reddaily):
+
     if n_clicks and n_clicks > 0:
-        source = get_redemption(start_date_reddaily)
-        df = source.head(5)
-        return html.Div(
-            [
-                dash_table.DataTable(
-                    df.to_dict("records"), [{"name": i, "id": i} for i in df.columns]
-                ),
-                html.Br(),
-                html.Button(
-                    "Export Data",
-                    id="export-button_reddaily",
-                    className="button is-primary",
-                    n_clicks=0,
-                ),
-                html.Br(),
-                dcc.Download(id="download-data-redemption_reddaily"),
-            ]
+
+        # Get data only once
+        df = get_redemption(start_date_reddaily)
+
+        # Create table
+        table = dash_table.DataTable(
+            data=df.to_dict("records"),
+            columns=[
+                {"name": i, "id": i}
+                for i in df.columns
+            ],
+            page_size=5,
+            style_table={
+                "overflowX": "auto",
+                "maxWidth": "100%",
+            },
+            style_cell={
+                "minWidth": "140px",
+                "width": "140px",
+                "maxWidth": "260px",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap",
+            },
         )
-    else:
-        return ("",)
 
-
-@callback(
-    Output("download-data-redemption_reddaily", "data"),
-    Input("export-button_reddaily", "n_clicks"),
-    State("start-date_reddaily", "date"),
-)
-def export_data(n_clicks, start_date_reddaily):
-    if n_clicks and n_clicks > 0:
-        import time
-
-        source = get_redemption(start_date_reddaily, preview=False)
-        return dcc.send_data_frame(
-            source.to_csv,
+        # Create CSV download
+        download = dcc.send_data_frame(
+            df.to_csv,
             filename=f"Redemption_{start_date_reddaily}.csv",
             index=False,
         )
+
+        return table, download
+
+    return "", no_update

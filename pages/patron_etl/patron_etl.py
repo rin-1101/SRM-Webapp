@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 import logging
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import sys
 ROOT = "\\\\ominfstdpsd10001p-fs.int.okadamanila.com\\Casino\\Strategic Marketing\\Database Admin\\ETL\\Applications\\okada"
@@ -68,7 +68,7 @@ class Patron:
             LEFT JOIN dws.dws_mkt_memberbuild mb
                 ON mp.universalplayerid = mb.universalplayerid
             WHERE mp.universalplayerid = '{self.universalplayerid}'
-            AND mb.gamingdate = '2026-06-07'
+            AND mb.gamingdate = '{(datetime.now()-timedelta(days=1)).strftime("%Y-%m-%d")}'
         """
 
         main_df = hloader.load_data(sql)
@@ -101,7 +101,7 @@ class Patron:
                 total_casinowincash_30days, total_casinowincash_90days, total_casinowincash_180days, total_casinowincash_lifetime,
                 adt_last12, onday_total_casinowincash 
             FROM dws.dws_mkt_memberbuild 
-            WHERE gamingdate = '2026-06-07'
+            WHERE gamingdate = '{(datetime.now()-timedelta(days=1)).strftime("%Y-%m-%d")}'
             AND universalplayerid = '{self.universalplayerid}'
         """
         main_df = hloader.load_data(sql)

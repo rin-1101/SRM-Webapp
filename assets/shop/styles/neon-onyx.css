@@ -1,0 +1,29 @@
+.shop-main-container.shop-theme-neon-onyx {
+    --shop-accent-1: #d8fff7;
+    --shop-accent-2: #33f3cf;
+    --shop-accent-3: #ce3cff;
+    --shop-accent-4: #611c89;
+    --shop-base-1: #171b28;
+    --shop-base-2: #10131d;
+    --shop-base-3: #090b12;
+    --shop-base-4: #03050a;
+    --shop-border-accent: rgba(51, 243, 207, 0.44);
+}
+
+.shop-theme-neon-onyx .shop-card,
+.shop-theme-neon-onyx .modal-card-shop {
+    background: linear-gradient(160deg, rgba(23, 27, 40, 0.98), rgba(3, 5, 10, 0.96));
+    border-color: rgba(51, 243, 207, 0.38);
+    box-shadow: 0 22px 56px rgba(0, 0, 0, 0.62), 0 0 18px rgba(206, 60, 255, 0.18);
+}
+
+.shop-theme-neon-onyx .button-shop,
+.shop-theme-neon-onyx .modal-card-shop .button.is-success,
+.shop-theme-neon-onyx .modal-card-shop .button.is-danger {
+    background: linear-gradient(135deg, #33f3cf, #ce3cff);
+    color: #03050a;
+}
+
+.shop-theme-neon-onyx .shop-title {
+    text-shadow: 0 0 14px rgba(51, 243, 207, 0.34), 0 0 20px rgba(206, 60, 255, 0.22);
+}

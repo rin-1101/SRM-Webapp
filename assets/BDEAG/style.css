@@ -1,0 +1,150 @@
+/* BDEAG-only surface and modal refinements. */
+#main-container-bdeag,
+#main-container-bdeag-view {
+    --bdeag-panel-surface: rgba(5, 12, 23, 0.2);
+    --bdeag-points-surface: rgba(2, 6, 12, 0.5);
+}
+
+#main-container-items-bdeag,
+#main-container-items-bdeag-view,
+#main-container-bdeag .shop-catalogue-tools,
+#main-container-bdeag-view .shop-catalogue-tools {
+    background: var(--bdeag-panel-surface);
+    border-color: rgba(255, 255, 255, 0.10);
+    box-shadow: none;
+}
+
+#credits-section-bdeag,
+#credits-section-bdeag-view {
+    background: var(--bdeag-points-surface) !important;
+    border-color: rgba(255, 255, 255, 0.10) !important;
+    box-shadow: none !important;
+}
+
+#credits-section-bdeag .shop-wallet-metric,
+#credits-section-bdeag .shop-wallet-metric.is-balance,
+#credits-section-bdeag-view .shop-wallet-metric,
+#credits-section-bdeag-view .shop-wallet-metric.is-balance {
+    background: var(--bdeag-panel-surface);
+}
+
+#main-container-bdeag .modal,
+#main-container-bdeag-view .modal {
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem;
+}
+
+#main-container-bdeag .modal-card-shop,
+#main-container-bdeag-view .modal-card-shop {
+    position: relative;
+    inset: auto;
+    max-height: calc(100vh - 2rem);
+    max-height: calc(100dvh - 2rem);
+    margin: auto;
+    border-radius: 26px;
+}
+
+/* Let BDEAG cards grow vertically so reward names are never truncated. */
+#main-container-bdeag .shop-catalogue-cell,
+#main-container-bdeag-view .shop-catalogue-cell {
+    display: flex;
+    flex-direction: column;
+}
+
+#main-container-bdeag .shop-product-card,
+#main-container-bdeag-view .shop-product-card {
+    flex: 1 1 auto;
+    height: auto;
+}
+
+#main-container-bdeag .shop-product-image-wrap,
+#main-container-bdeag-view .shop-product-image-wrap {
+    position: relative;
+    padding: 0.5rem;
+}
+
+#main-container-bdeag .shop-product-image,
+#main-container-bdeag-view .shop-product-image {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: calc(100% - 1rem);
+    height: calc(100% - 1rem);
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+}
+
+#main-container-bdeag .shop-product-name,
+#main-container-bdeag-view .shop-product-name {
+    display: block;
+    min-height: 0;
+    overflow: visible;
+    font-size: 0.92rem;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+    white-space: normal;
+    -webkit-box-orient: initial;
+    -webkit-line-clamp: unset;
+}
+
+#main-container-bdeag .shop-modal-image-wrapper,
+#main-container-bdeag-view .shop-modal-image-wrapper {
+    position: relative;
+    height: 42vh;
+    height: clamp(240px, 42dvh, 520px);
+    max-height: none;
+    padding: 0.75rem;
+}
+
+#main-container-bdeag .shop-modal-image-wrapper > div,
+#main-container-bdeag-view .shop-modal-image-wrapper > div {
+    position: static !important;
+}
+
+#main-container-bdeag .shop-modal-image,
+#main-container-bdeag-view .shop-modal-image {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    width: calc(100% - 1.5rem);
+    height: calc(100% - 1.5rem);
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Lower the paint and compositing cost on the TV-oriented view route. */
+#main-container-bdeag-view.shop-low-power,
+#main-container-bdeag-view.shop-low-power * {
+    animation: none !important;
+    transition: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+#main-container-bdeag-view.shop-low-power {
+    background-attachment: scroll !important;
+}
+
+#main-container-bdeag-view.shop-low-power .shop-member-wallet,
+#main-container-bdeag-view.shop-low-power .shop-catalogue-tools,
+#main-container-bdeag-view.shop-low-power .shop-product-card,
+#main-container-bdeag-view.shop-low-power .modal-card-shop,
+#main-container-bdeag-view.shop-low-power .shop-wallet-sticky,
+#main-container-bdeag-view.shop-low-power .shop-floating-refresh {
+    box-shadow: none !important;
+}
+
+#main-container-bdeag-view.shop-low-power .shop-page-logo,
+#main-container-bdeag-view.shop-low-power .shop-product-card.is-unavailable {
+    filter: none !important;
+}
+
+#main-container-bdeag-view.shop-low-power .shop-catalogue-cell {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 340px;
+}

@@ -1,0 +1,4 @@
+/* Base keeps the current shared shop.css look. */
+.shop-main-container.shop-theme-base {
+    --shop-theme-name: "base";
+}

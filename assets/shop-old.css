@@ -1,0 +1,768 @@
+/* ============================================================
+   SHOP.CSS — generic structural stylesheet for `templates/shopping.py`
+   ============================================================
+   Every color in this file comes from a CSS custom property below.
+   Adding a new shop module should NEVER require touching a rule —
+   only the :root values (or a scoped override, see bottom of file).
+
+   Structural class names use the `shop-` prefix, matching
+   `ShopConfig(css_prefix="shop")` — the default. A legacy module
+   that sets `css_prefix="afhc"` (or any other value) keeps its own
+   independent stylesheet and is unaffected by this file.
+
+   USAGE FOR A NEW MODULE
+   -----------------------
+   1. Leave `ShopConfig(css_prefix=...)` unset (defaults to "shop"),
+      or set it to "shop" explicitly.
+   2. Point `assets_folder` at a small per-module folder, e.g. "vip-raffle".
+   3. In /assets/<your-folder>/style.css put ONLY this:
+
+          @import url("/assets/shop.css");
+
+          #main-container-<your-suffix> {
+              --shop-accent-1: #f2d98a;
+              --shop-accent-2: #d4af37;
+              --shop-accent-3: #a8791f;
+              --shop-accent-4: #7a5714;
+              --shop-base-1:   #2c3440;
+              --shop-base-2:   #1c222b;
+              --shop-base-3:   #12161c;
+              --shop-base-4:   #090b0e;
+              --shop-bg-image: url('/assets/<your-folder>/bg.png');
+          }
+
+      That's it — every card, button, modal, and footer picks up the
+      new palette automatically because they're all scoped underneath
+      `#main-container-<suffix>`.
+   ============================================================ */
+
+/* ============================================================
+   DEFAULT PALETTE (fallback if a module doesn't override anything)
+   Generic slate + amber — swap these four "accent" and four "base"
+   stops per module; nothing else needs to change.
+   ============================================================ */
+:root {
+    --shop-accent-1:     #f2d98a;  /* accent, lightest  (highlights / hover) */
+    --shop-accent-2:     #d4af37;  /* accent, mid        (primary buttons)   */
+    --shop-accent-3:     #a8791f;  /* accent, dark        (button shadow)    */
+    --shop-accent-4:     #7a5714;  /* accent, deepest     (icons on dark)    */
+
+    --shop-base-1:       #3a4452;  /* base, lightest  (card top gradient)    */
+    --shop-base-2:       #262d38;  /* base, mid       (card bottom gradient) */
+    --shop-base-3:       #171c24;  /* base, dark      (modal / footer bg)    */
+    --shop-base-4:       #0b0e13;  /* base, deepest   (page background)      */
+
+    --shop-text-bright:  #f5f2ea; /* headings, item names                    */
+    --shop-text-muted:   rgba(220, 220, 225, 0.72); /* body copy, captions   */
+
+    --shop-border-accent: rgba(168, 121, 31, 0.5);  /* card/button hairline  */
+    --shop-shadow-deep:    rgba(0, 0, 0, 0.7);
+    --shop-bg-image:       none; /* set per-module, e.g. url('/assets/<folder>/bg.png') */
+}
+
+/* ============================================================
+   MAIN CONTAINER
+   position + z-index: 0 keeps everything below the modal
+   (z-index: 9999 below), so hover/transform effects never bleed
+   above the modal backdrop.
+   ============================================================ */
+.shop-main-container {
+    background-image: var(--shop-bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-y: auto;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+    z-index: 0;
+}
+
+/* ============================================================
+   TITLES (TP Earned / Redeemed / Balance headers)
+   ============================================================ */
+.shop-title {
+    color: var(--shop-accent-1);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-shadow:
+        0 1px 6px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+/* ============================================================
+   SEARCH BOX — box-shop input wrapper + button
+   ============================================================ */
+.box-shop {
+    display: inline-block;
+    padding: 6px 8px;
+    border-radius: 12px;
+    background: linear-gradient(170deg, var(--shop-accent-2), var(--shop-accent-3));
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.35),
+        0 5px 14px var(--shop-shadow-deep),
+        inset 0 1px 2px rgba(255, 255, 255, 0.25),
+        inset 0 -1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.shop-main-container .search-box {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(145deg, var(--shop-base-1), var(--shop-base-3));
+    border: 1px solid var(--shop-border-accent);
+    border-radius: 30px;
+    padding: 0.3rem;
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(168, 121, 31, 0.15);
+    margin: 1rem 0;
+}
+
+.box-shop > .search-input,
+.shop-credits-container > .search-input {
+    width: 100% !important;
+    background: linear-gradient(145deg, var(--shop-base-1), var(--shop-base-2));
+    border: none;
+    outline: none;
+    white-space: wrap;
+    color: var(--shop-text-bright);
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border-radius: 6px;
+}
+
+.box-shop > .search-input:disabled,
+.box-shop > .search-input:disabled::placeholder {
+    color: var(--shop-text-muted);
+}
+
+.box-shop > .search-input::placeholder {
+    color: var(--shop-text-muted);
+}
+
+.shop-items-grid {
+    margin: 5vw !important;
+}
+
+/* ============================================================
+   BUTTON-SHOP — primary accent action button
+   ============================================================ */
+.button-shop {
+    background: linear-gradient(
+        145deg,
+        var(--shop-accent-1) 0%,
+        var(--shop-accent-2) 40%,
+        var(--shop-accent-3) 70%,
+        var(--shop-accent-3) 100%
+    );
+    color: var(--shop-base-4);
+    font-weight: 700;
+    border: none;
+    border-radius: 30px;
+    padding: 0.65rem 1.5rem;
+    margin-left: 1rem;
+    letter-spacing: 0.04em;
+    transition: all 0.25s ease-in-out;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.45),
+        0 0 0 1px var(--shop-border-accent),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.button-shop:hover {
+    background: linear-gradient(
+        145deg,
+        var(--shop-accent-1) 0%,
+        var(--shop-accent-1) 40%,
+        var(--shop-accent-2) 100%
+    );
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    transform: translateY(-2px);
+}
+
+.button-shop:active {
+    transform: translateY(0);
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.4),
+        inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================================
+   ITEM CARDS — .shop-card
+   isolation: isolate contains each card's own stacking context
+   so hover transforms never escape above the modal (z-index: 9999).
+   ============================================================ */
+.shop-card {
+    background: linear-gradient(
+        160deg,
+        var(--shop-base-1) 0%,
+        var(--shop-base-2) 45%,
+        var(--shop-base-3) 100%
+    );
+    height: 300px;
+    width: 100%;
+    margin: auto;
+    color: var(--shop-text-bright);
+    border-radius: 14px;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    box-shadow:
+        0 0 0 1.5px var(--shop-accent-3),
+        0 0 0 2.5px rgba(168, 121, 31, 0.2),
+        0 8px 28px var(--shop-shadow-deep),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+    z-index: 1;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.shop-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--shop-accent-2), transparent);
+    opacity: 0.65;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.shop-card::after {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.shop-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow:
+        0 0 0 1.5px var(--shop-accent-2),
+        0 0 0 3px rgba(212, 175, 55, 0.3),
+        0 16px 40px rgba(0, 0, 0, 0.85),
+        0 0 24px rgba(212, 175, 55, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ---- Card image area ---- */
+.shop-card .card-image {
+    height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.06) 0%, rgba(0, 0, 0, 0.5) 100%);
+    border-bottom: 1px solid rgba(168, 121, 31, 0.28);
+    position: relative;
+}
+
+.shop-card .card-image img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.75));
+    transition: transform 0.3s ease, filter 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.shop-card:hover .card-image img {
+    transform: scale(1.07);
+    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.8)) brightness(1.05);
+}
+
+/* ---- Card titles & content ---- */
+.shop-card-title {
+    color: var(--shop-accent-1);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.35;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.75);
+    text-align: center;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    white-space: normal;
+    word-wrap: break-word;
+    margin-bottom: 0.25rem;
+}
+
+.shop-card-subtitle {
+    color: var(--shop-accent-2);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.shop-card-content {
+    color: var(--shop-text-muted);
+    font-size: 0.7rem;
+    text-align: center;
+    letter-spacing: 0.03em;
+    padding: 0 0.5rem 0.5rem;
+    line-height: 1.5;
+}
+
+.shop-card-content strong,
+.shop-card-content b {
+    color: var(--shop-accent-1);
+}
+
+.shop-quantity {
+    color: var(--shop-text-muted);
+    font-size: 0.75rem;
+}
+
+/* ============================================================
+   FOOTER — .shop-redeem-footer
+   ============================================================ */
+.shop-redeem-footer {
+    background: linear-gradient(180deg, var(--shop-base-3) 0%, var(--shop-base-4) 100%);
+    color: var(--shop-text-bright);
+    border-top: 1px solid var(--shop-border-accent);
+    box-shadow:
+        0 -6px 28px rgba(0, 0, 0, 0.65),
+        inset 0 1px 0 rgba(212, 175, 55, 0.18);
+    padding: 0.75rem 1.25rem 1.1rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    text-align: center;
+}
+
+.shop-redeem-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 12%;
+    width: 76%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--shop-accent-2), transparent);
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+.shop-redeem-footer p,
+.shop-redeem-footer span.total-label {
+    color: var(--shop-text-muted);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+}
+
+.shop-redeem-footer .button-shop {
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.75rem 2.75rem;
+    min-width: 170px;
+    margin-top: 0.2rem;
+}
+
+/* ============================================================
+   CREDITS CONTAINER — .shop-credits-container
+   ============================================================ */
+.shop-credits-container {
+    /* background: linear-gradient(
+        180deg,
+        var(--shop-base-2) 0%,
+        var(--shop-base-3) 60%,
+        var(--shop-base-4) 100%
+    ); */
+    /* border-radius: 16px; */
+    /* border: 1px solid var(--shop-border-accent); */
+    /* box-shadow:
+        0 0 0 1px rgba(168, 121, 31, 0.12),
+        0 10px 40px rgba(0, 0, 0, 0.75),
+        inset 0 1px 0 rgba(212, 175, 55, 0.14); */
+    padding: 1.5rem;
+    position: relative;
+    isolation: isolate;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.shop-credits-container::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 80px;
+    background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.shop-credits-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15%;
+    width: 70%;
+    height: 1px;
+    /* background: linear-gradient(90deg, transparent, var(--shop-accent-2), transparent); */
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.shop-credits-container .label,
+.shop-credits-container p,
+.shop-credits-container span {
+    color: var(--shop-text-bright);
+    letter-spacing: 0.03em;
+}
+
+.shop-credits-container > .search-input:focus {
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.15);
+}
+
+.shop-credits-container > .search-input::placeholder {
+    color: var(--shop-text-muted);
+}
+
+.shop-credits-container .box-shop {
+    text-align: center;
+    width: 100%;
+}
+
+/* ============================================================
+   MODAL BACKDROP
+   z-index: 9999 always above cards / footer / transformed elements.
+   ============================================================ */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.is-active {
+    display: flex;
+    z-index: 9999;
+}
+
+/* ============================================================
+   MODAL CARD WRAPPER — .shop-card reused as the modal's card class
+   ============================================================ */
+.modal-card-shop.shop-card {
+    width: 80vw !important;
+    max-width: 560px;
+    height: auto;
+    max-height: 90vh;
+    padding-top: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    z-index: 10000;
+    box-shadow:
+        0 0 0 1.5px var(--shop-accent-3),
+        0 0 0 3px rgba(168, 121, 31, 0.2),
+        0 24px 60px rgba(0, 0, 0, 0.9),
+        0 8px 24px rgba(0, 0, 0, 0.7);
+}
+
+.modal-card-shop .modal-card-head {
+    background: linear-gradient(135deg, var(--shop-base-3) 0%, var(--shop-base-4) 50%, var(--shop-base-3) 100%);
+    border-bottom: 1px solid var(--shop-border-accent);
+    padding: 1rem 1.5rem;
+    position: relative;
+}
+
+.modal-card-shop .modal-card-head::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--shop-accent-2), transparent);
+    opacity: 0.7;
+}
+
+.modal-card-shop .modal-card-title {
+    color: var(--shop-accent-1);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    font-size: 1.05rem;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+
+.modal-card-shop .modal-card-body {
+    background: linear-gradient(180deg, var(--shop-base-3) 0%, var(--shop-base-4) 100%);
+    padding: 1.25rem 1.5rem;
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+.modal-card-shop .modal-card-foot {
+    background: linear-gradient(180deg, var(--shop-base-3) 0%, var(--shop-base-4) 100%);
+    border-top: 1px solid var(--shop-border-accent);
+    padding: 0.85rem 1.5rem;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.modal-card-shop .modal-card-body .title,
+.modal-content .title {
+    color: var(--shop-accent-1);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.modal-card-shop .modal-card-body .content,
+.modal-content .content {
+    color: var(--shop-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.modal-card-shop .modal-card-body p strong,
+.modal-card-shop .modal-card-body .subtitle {
+    color: var(--shop-accent-1);
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 0.75rem;
+}
+
+.modal-card-shop .modal-card-body p:not(strong),
+.modal-card-shop .modal-card-body small {
+    color: var(--shop-text-muted);
+    text-align: center;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    display: block;
+}
+
+/* ============================================================
+   MODAL — ITEM IMAGE  (.shop-modal-image / -wrapper)
+   ============================================================ */
+.shop-modal-image-wrapper {
+    border-radius: 10px;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.5) 100%);
+    border: 1px solid rgba(168, 121, 31, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.75);
+    margin-bottom: 0.75rem;
+}
+
+.shop-modal-image {
+    height: 500px !important;
+    object-fit: contain;
+}
+
+.shop-modal-title {
+    color: var(--shop-accent-1);
+}
+
+.shop-modal-cost {
+    color: var(--shop-text-muted);
+}
+
+/* ============================================================
+   QUANTITY STEPPER — .shop-quantity-field ( - / 0 / + )
+   ============================================================ */
+.shop-quantity-field {
+    justify-content: center;
+    margin: 0.75rem 0;
+}
+
+.shop-quantity-field .button {
+    background: linear-gradient(135deg, var(--shop-accent-3), var(--shop-accent-4));
+    color: var(--shop-accent-1);
+    border: 1px solid var(--shop-border-accent);
+    font-weight: 700;
+    font-size: 1.1rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    padding: 0;
+    line-height: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease;
+}
+
+.shop-quantity-field .button:hover {
+    background: linear-gradient(135deg, var(--shop-accent-2), var(--shop-accent-3));
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+}
+
+.shop-quantity-field .button.is-static {
+    background: var(--shop-base-4);
+    color: var(--shop-accent-1);
+    border: 1px solid var(--shop-border-accent);
+}
+
+/* ============================================================
+   ADD TO CART BUTTON
+   ============================================================ */
+.modal-card-shop .modal-card-body .button.is-success,
+.modal-card-shop .modal-card-foot .button.is-success {
+    background: linear-gradient(135deg, var(--shop-accent-1) 0%, var(--shop-accent-2) 40%, var(--shop-accent-3) 100%);
+    color: var(--shop-base-4);
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 30px;
+    padding: 0.7rem 2rem;
+    width: 100%;
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transition: all 0.25s ease;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+.modal-card-shop .modal-card-body .button.is-success:hover,
+.modal-card-shop .modal-card-foot .button.is-success:hover {
+    background: linear-gradient(135deg, var(--shop-accent-1) 0%, var(--shop-accent-1) 40%, var(--shop-accent-2) 100%);
+    box-shadow:
+        0 6px 22px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   CLOSE (X) BUTTON — top-right corner of modal
+   ============================================================ */
+.modal-close,
+.delete {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    background: rgba(168, 121, 31, 0.15) !important;
+    border: 1px solid var(--shop-border-accent) !important;
+    border-radius: 50% !important;
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+    color: var(--shop-accent-2) !important;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    z-index: 10001;
+}
+
+.modal-close::before,
+.modal-close::after,
+.delete::before,
+.delete::after {
+    background-color: var(--shop-accent-2) !important;
+}
+
+.modal-close:hover,
+.delete:hover {
+    background: rgba(212, 175, 55, 0.25) !important;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    transform: scale(1.1);
+}
+
+/* ============================================================
+   VIEW-ONLY MODE — cards inside a `view_only=True` grid
+   Add `.shop-view-only` to the items-grid wrapper (or any ancestor)
+   to disable pointer affordance; the template itself doesn't add
+   this automatically since view-only pages still allow the detail
+   modal to open on click.
+   ============================================================ */
+.shop-view-only .shop-card {
+    cursor: default;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+    .shop-card {
+        border-radius: 10px;
+    }
+
+    .shop-card .card-image {
+        height: 140px;
+    }
+
+    .shop-card-title {
+        font-size: 0.72rem;
+    }
+
+    .shop-redeem-footer .button-shop {
+        padding: 0.65rem 2rem;
+        font-size: 0.9rem;
+        min-width: 140px;
+    }
+
+    .shop-credits-container {
+        padding: 1rem;
+        border-radius: 12px;
+    }
+
+    .shop-items-grid {
+        margin: 3vw !important;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 1.25rem;
+    }
+
+    .modal-card-shop.shop-card {
+        width: 95vw !important;
+        max-width: 95vw;
+    }
+
+    .modal-card-shop .modal-card-body {
+        padding: 1rem;
+    }
+}
+
+/*
+
+*/
+.search-input {
+    background: none !important;
+    border: none !important;
+    outline: none !important;
+    color: var(--shop-text-bright);
+    padding: 0.6rem 1rem !important;
+    font-size: 1rem !important;
+    border-radius: 6px !important;
+}

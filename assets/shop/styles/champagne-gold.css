@@ -1,0 +1,26 @@
+.shop-main-container.shop-theme-champagne-gold {
+    --shop-accent-1: #fff8dc;
+    --shop-accent-2: #e6c76e;
+    --shop-accent-3: #b98b2d;
+    --shop-accent-4: #624513;
+    --shop-base-1: #fff5d8;
+    --shop-base-2: #ead8ac;
+    --shop-base-3: #2a251a;
+    --shop-base-4: #11100c;
+    --shop-text-bright: #fff9e8;
+    --shop-text-muted: rgba(255, 248, 220, 0.74);
+    --shop-border-accent: rgba(230, 199, 110, 0.45);
+}
+
+.shop-theme-champagne-gold .shop-card,
+.shop-theme-champagne-gold .modal-card-shop {
+    background: linear-gradient(155deg, rgba(255, 245, 216, 0.18), rgba(17, 16, 12, 0.92));
+    border-color: rgba(255, 248, 220, 0.24);
+}
+
+.shop-theme-champagne-gold .button-shop,
+.shop-theme-champagne-gold .modal-card-shop .button.is-success,
+.shop-theme-champagne-gold .modal-card-shop .button.is-danger {
+    background: linear-gradient(135deg, #fff8dc, #e6c76e 55%, #b98b2d);
+    color: #11100c;
+}

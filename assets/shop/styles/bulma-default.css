@@ -1,0 +1,347 @@
+/*
+   Bulma Default
+   -------------
+   Scoped reset for the shared shopping template. It removes the custom
+   shopping visual layer as much as the current markup allows, leaving
+   Bulma-like cards, buttons, inputs, modals, and footer behavior.
+*/
+.shop-main-container.shop-theme-bulma-default {
+    --shop-accent-1: #363636;
+    --shop-accent-2: #485fc7;
+    --shop-accent-3: #3e56c4;
+    --shop-accent-4: #2f3f99;
+    --shop-base-1: #ffffff;
+    --shop-base-2: #fafafa;
+    --shop-base-3: #f5f5f5;
+    --shop-base-4: #363636;
+    --shop-text-bright: #363636;
+    --shop-text-muted: #4a4a4a;
+    --shop-border-accent: rgba(10, 10, 10, 0.12);
+    --shop-shadow-deep: rgba(10, 10, 10, 0.10);
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #4a4a4a;
+    min-height: 100vh;
+    height: auto;
+    padding-bottom: 0;
+}
+
+.shop-main-container.shop-theme-bulma-default > div:first-child[style] {
+    display: none !important;
+}
+
+.shop-theme-bulma-default .shop-logo-wrap {
+    padding: 1.5rem 1.5rem 0;
+}
+
+.shop-theme-bulma-default .shop-main-logo {
+    height: auto;
+    max-height: 160px;
+    max-width: min(480px, 70vw);
+    filter: none;
+}
+
+.shop-theme-bulma-default .shop-style-picker {
+    position: static;
+    max-width: none;
+    margin: 1rem 1.5rem 0;
+}
+
+.shop-theme-bulma-default .shop-style-radio-group {
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+.shop-theme-bulma-default .shop-style-radio-label,
+.shop-theme-bulma-default .shop-refresh-wrap .button {
+    min-height: auto;
+    padding: 0.5em 0.75em;
+    background: #ffffff !important;
+    color: #363636 !important;
+    border: 1px solid #dbdbdb !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-transform: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+.shop-theme-bulma-default .shop-style-radio-label:has(.shop-style-radio-input:checked) {
+    border-color: #485fc7 !important;
+    color: #485fc7 !important;
+}
+
+.shop-theme-bulma-default .shop-refresh-wrap {
+    position: static;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 1.5rem 0;
+}
+
+.shop-theme-bulma-default .shop-search-container {
+    width: auto;
+    max-width: 960px;
+    margin: 0 auto !important;
+    padding: 2rem 1.5rem;
+}
+
+.shop-theme-bulma-default .shop-search-panel {
+    margin-right: 0;
+}
+
+.shop-theme-bulma-default .box-shop,
+.shop-theme-bulma-default .shop-main-container .search-box {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0.75rem 0;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.shop-theme-bulma-default .search-input,
+.shop-theme-bulma-default .box-shop > .search-input,
+.shop-theme-bulma-default .shop-main-container .search-input,
+.shop-theme-bulma-default .shop-main-container .search-input:disabled,
+.shop-theme-bulma-default .shop-main-container .search-input:disabled::placeholder {
+    background-color: #ffffff !important;
+    border: 1px solid #dbdbdb !important;
+    border-radius: 4px !important;
+    box-shadow: inset 0 0.0625em 0.125em rgba(10, 10, 10, 0.05) !important;
+    color: #363636 !important;
+    -webkit-text-fill-color: #363636 !important;
+    font-size: 1rem !important;
+    font-weight: 400;
+}
+
+.shop-theme-bulma-default .button-shop,
+.shop-theme-bulma-default .modal-card-shop .button.is-success,
+.shop-theme-bulma-default .modal-card-shop .button.is-danger {
+    background: #485fc7 !important;
+    border-color: transparent !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    color: #ffffff !important;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.shop-theme-bulma-default .button-shop:hover,
+.shop-theme-bulma-default .modal-card-shop .button.is-success:hover,
+.shop-theme-bulma-default .modal-card-shop .button.is-danger:hover {
+    background: #3e56c4 !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.shop-theme-bulma-default .shop-credits-container {
+    width: auto;
+    max-width: 960px;
+    margin: 0 auto 1.5rem !important;
+    padding: 1.5rem;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.shop-theme-bulma-default .shop-title {
+    color: #363636;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-shadow: none;
+    text-transform: none;
+}
+
+.shop-theme-bulma-default .shop-items-grid {
+    width: auto;
+    max-width: 1120px;
+    margin: 1.5rem auto !important;
+    padding: 0 1.5rem;
+}
+
+.shop-theme-bulma-default .shop-item-column {
+    padding: 0.75rem;
+}
+
+.shop-theme-bulma-default .shop-card,
+.shop-theme-bulma-default .modal-card-shop {
+    background: #ffffff !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.10), 0 0 0 1px rgba(10, 10, 10, 0.02) !important;
+    color: #4a4a4a;
+}
+
+.shop-theme-bulma-default .shop-card {
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    overflow: visible;
+}
+
+.shop-theme-bulma-default .shop-card::before,
+.shop-theme-bulma-default .shop-card::after {
+    display: none !important;
+}
+
+.shop-theme-bulma-default .shop-card:hover {
+    transform: none !important;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.10), 0 0 0 1px rgba(10, 10, 10, 0.02) !important;
+}
+
+.shop-theme-bulma-default .shop-card .card-image {
+    height: auto;
+    margin: 0;
+    background: transparent;
+    border: none;
+    overflow: visible;
+}
+
+.shop-theme-bulma-default .shop-card .card-image img,
+.shop-theme-bulma-default .shop-card:hover .card-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: none;
+    object-fit: contain;
+    filter: none;
+    transform: none;
+}
+
+.shop-theme-bulma-default .shop-card-content {
+    color: #4a4a4a;
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.shop-theme-bulma-default .shop-card-title,
+.shop-theme-bulma-default .shop-modal-title,
+.shop-theme-bulma-default .modal-card-shop .modal-card-body .title,
+.shop-theme-bulma-default .modal-content .title {
+    color: #363636 !important;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-align: left;
+    text-shadow: none;
+}
+
+.shop-theme-bulma-default .shop-card-subtitle,
+.shop-theme-bulma-default .shop-modal-cost,
+.shop-theme-bulma-default .modal-card-shop .modal-card-body .subtitle {
+    color: #4a4a4a !important;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-align: left;
+}
+
+.shop-theme-bulma-default .shop-quantity {
+    color: #4a4a4a;
+    font-size: 1rem;
+    letter-spacing: 0;
+}
+
+.shop-theme-bulma-default .modal-background {
+    background: rgba(10, 10, 10, 0.86) !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+.shop-theme-bulma-default .modal-card-shop.shop-card {
+    width: 640px !important;
+    max-width: calc(100vw - 2rem) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: hidden;
+}
+
+.shop-theme-bulma-default .modal-card-shop .modal-card-head,
+.shop-theme-bulma-default .modal-card-shop .modal-card-foot {
+    background: #f5f5f5 !important;
+    border-color: #dbdbdb !important;
+    padding: 1rem;
+}
+
+.shop-theme-bulma-default .modal-card-shop .modal-card-title {
+    color: #363636;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.shop-theme-bulma-default .modal-card-shop .modal-card-body {
+    background: #ffffff !important;
+    color: #4a4a4a;
+    padding: 1.5rem;
+}
+
+.shop-theme-bulma-default .shop-modal-image-wrapper {
+    height: auto;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+}
+
+.shop-theme-bulma-default .shop-modal-image {
+    width: 100%;
+    height: auto;
+    max-height: 320px;
+    object-fit: contain;
+    filter: none;
+}
+
+.shop-theme-bulma-default .shop-quantity-field .button,
+.shop-theme-bulma-default .shop-quantity-field .button.is-static,
+.shop-theme-bulma-default .modal-card-shop .modal-card-foot .button:not(.is-danger) {
+    background: #ffffff !important;
+    border: 1px solid #dbdbdb !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    color: #363636 !important;
+}
+
+.shop-theme-bulma-default .delete,
+.shop-theme-bulma-default .modal-close {
+    background: rgba(10, 10, 10, 0.20) !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.shop-theme-bulma-default .shop-redeem-footer {
+    position: static !important;
+    width: auto;
+    transform: none;
+    padding: 3rem 1.5rem 6rem;
+    background: #fafafa !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    color: #4a4a4a !important;
+}
+
+.shop-theme-bulma-default .shop-redeem-footer > div {
+    color: #4a4a4a;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .shop-theme-bulma-default .shop-style-picker {
+        position: static;
+        margin: 1rem;
+    }
+
+    .shop-theme-bulma-default .shop-main-logo {
+        max-height: 110px;
+    }
+
+    .shop-theme-bulma-default .shop-items-grid {
+        padding: 0 0.75rem;
+    }
+}

@@ -3,3 +3,21 @@ JSON/
 ssl/
 
 .env
+
+cachelib/
+
+dash_auth/
+
+dash_auth-2.0.0/
+
+flask_login/
+
+flask_session/
+
+flask_sqlalchemy/
+
+ldap3/
+
+msgspec/
+
+ssl/

@@ -1,0 +1,23 @@
+.shop-main-container.shop-theme-velvet-noir {
+    --shop-accent-1: #ffe8ae;
+    --shop-accent-2: #d9a441;
+    --shop-accent-3: #9a6422;
+    --shop-accent-4: #5c241f;
+    --shop-base-1: #331016;
+    --shop-base-2: #210b10;
+    --shop-base-3: #12070a;
+    --shop-base-4: #070305;
+    --shop-border-accent: rgba(217, 164, 65, 0.46);
+}
+
+.shop-theme-velvet-noir .shop-card,
+.shop-theme-velvet-noir .modal-card-shop {
+    background: linear-gradient(150deg, #3a1118, #16070b 70%);
+    border-color: rgba(217, 164, 65, 0.42);
+    box-shadow: 0 24px 52px rgba(0, 0, 0, 0.58), inset 0 1px 0 rgba(255, 232, 174, 0.12);
+}
+
+.shop-theme-velvet-noir .shop-title,
+.shop-theme-velvet-noir .shop-card-title {
+    color: #ffe8ae;
+}

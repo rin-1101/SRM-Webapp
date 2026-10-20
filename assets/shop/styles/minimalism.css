@@ -1,0 +1,466 @@
+.shop-main-container.shop-theme-minimalism {
+    --shop-accent-1: #7b1f5f;
+    --shop-accent-2: #9f3d79;
+    --shop-accent-3: #c98ab4;
+    --shop-accent-4: #f3e5ee;
+    --shop-base-1: #ffffff;
+    --shop-base-2: #faf8f5;
+    --shop-base-3: #eee9e2;
+    --shop-base-4: #332834;
+    --shop-text-bright: #2d2630;
+    --shop-text-muted: #6f6872;
+    --shop-border-accent: rgba(77, 55, 75, 0.12);
+    --shop-shadow-deep: rgba(51, 40, 52, 0.12);
+    background-color: #f6f2ed !important;
+    background-image:
+        radial-gradient(circle at 14% 10%, rgba(159, 61, 121, 0.12), transparent 24rem),
+        linear-gradient(180deg, #fbf9f6 0%, #f4efe8 100%) !important;
+    color: var(--shop-text-bright);
+    padding-bottom: 6.5rem;
+}
+
+.shop-main-container.shop-theme-minimalism > div:first-child[style] {
+    display: none !important;
+}
+
+.shop-theme-minimalism .shop-logo-wrap {
+    padding-top: clamp(0.75rem, 2.5vh, 1.75rem);
+}
+
+.shop-theme-minimalism .shop-main-logo {
+    height: clamp(68px, 12vh, 132px);
+    max-width: min(48vw, 340px);
+    filter: none;
+    opacity: 0.95;
+}
+
+.shop-theme-minimalism .shop-style-picker {
+    top: 4.7rem;
+    right: clamp(1rem, 3vw, 2rem);
+    max-width: min(92vw, 710px);
+}
+
+.shop-theme-minimalism .shop-style-radio-group {
+    gap: 0.35rem;
+}
+
+.shop-theme-minimalism .shop-style-radio-label,
+.shop-theme-minimalism .shop-refresh-wrap .button {
+    min-height: 32px;
+    padding: 0.42rem 0.68rem;
+    background: rgba(255, 255, 255, 0.82) !important;
+    color: #3d3440 !important;
+    border: 1px solid rgba(77, 55, 75, 0.14) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 6px 18px rgba(51, 40, 52, 0.06) !important;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.shop-theme-minimalism .shop-style-radio-label:has(.shop-style-radio-input:checked) {
+    background: #7b1f5f !important;
+    color: #ffffff !important;
+    border-color: #7b1f5f !important;
+}
+
+.shop-theme-minimalism .shop-style-radio-input {
+    accent-color: #7b1f5f;
+}
+
+.shop-theme-minimalism .shop-refresh-wrap .button:hover,
+.shop-theme-minimalism .shop-style-radio-label:hover {
+    border-color: rgba(123, 31, 95, 0.38) !important;
+    color: #7b1f5f !important;
+}
+
+.shop-theme-minimalism .shop-search-container {
+    width: min(100%, 920px);
+    padding: clamp(0.75rem, 4vh, 2.5rem) clamp(1rem, 4vw, 2rem) 0.25rem;
+}
+
+.shop-theme-minimalism .shop-search-panel {
+    margin-right: 0;
+}
+
+.shop-theme-minimalism .shop-search-container .column.is-one-quarter {
+    max-width: 190px;
+}
+
+.shop-theme-minimalism .shop-search-container .column.is-one-quarter img {
+    max-height: 108px;
+    opacity: 0.7;
+    filter: none;
+}
+
+.shop-theme-minimalism .box-shop,
+.shop-theme-minimalism .shop-main-container .search-box {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border: 1px solid rgba(77, 55, 75, 0.13) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 10px 28px rgba(51, 40, 52, 0.07) !important;
+    padding: 0.16rem;
+}
+
+.shop-theme-minimalism .search-input,
+.shop-theme-minimalism .box-shop > .search-input,
+.shop-theme-minimalism .shop-main-container .search-input,
+.shop-theme-minimalism .shop-main-container .search-input:disabled,
+.shop-theme-minimalism .shop-main-container .search-input:disabled::placeholder {
+    color: #2d2630 !important;
+    -webkit-text-fill-color: #2d2630 !important;
+    font-weight: 700;
+}
+
+.shop-theme-minimalism .shop-main-container .search-input::placeholder {
+    color: #8c8490 !important;
+    -webkit-text-fill-color: #8c8490 !important;
+}
+
+.shop-theme-minimalism .button-shop,
+.shop-theme-minimalism .modal-card-shop .button.is-success,
+.shop-theme-minimalism .modal-card-shop .button.is-danger {
+    min-height: 44px;
+    background: #7b1f5f !important;
+    color: #ffffff !important;
+    border: 1px solid #7b1f5f !important;
+    border-radius: 10px !important;
+    box-shadow: 0 10px 24px rgba(123, 31, 95, 0.18) !important;
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 800;
+}
+
+.shop-theme-minimalism .button-shop:hover,
+.shop-theme-minimalism .modal-card-shop .button.is-success:hover,
+.shop-theme-minimalism .modal-card-shop .button.is-danger:hover {
+    background: #682052 !important;
+    border-color: #682052 !important;
+    transform: none !important;
+    box-shadow: 0 12px 28px rgba(123, 31, 95, 0.20) !important;
+}
+
+.shop-theme-minimalism .shop-credits-container {
+    width: min(100% - 2rem, 980px);
+    margin: 1.25rem auto 0.75rem !important;
+    padding: 0.85rem 0.8rem;
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid rgba(77, 55, 75, 0.11);
+    border-radius: 14px;
+    box-shadow: 0 16px 42px rgba(51, 40, 52, 0.09);
+}
+
+.shop-theme-minimalism .shop-credits-container .section {
+    padding: 0.65rem 0.5rem;
+}
+
+.shop-theme-minimalism .shop-title {
+    color: #6f6872;
+    font-size: 0.76rem !important;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    text-shadow: none;
+    margin-bottom: 0.45rem;
+}
+
+.shop-theme-minimalism .shop-credits-container .search-box {
+    background: #ffffff !important;
+}
+
+.shop-theme-minimalism .shop-items-grid {
+    width: min(100% - 2rem, 1120px);
+    margin: 1.4rem auto 7.25rem !important;
+    gap: 0.95rem 0;
+}
+
+.shop-theme-minimalism .shop-item-column {
+    padding: 0.48rem;
+}
+
+.shop-theme-minimalism .shop-card,
+.shop-theme-minimalism .modal-card-shop {
+    background: rgba(255, 255, 255, 0.94) !important;
+    border: 1px solid rgba(77, 55, 75, 0.11) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 16px 38px rgba(51, 40, 52, 0.09) !important;
+    color: #2d2630;
+}
+
+.shop-theme-minimalism .shop-card {
+    height: 286px;
+    min-height: 286px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.shop-theme-minimalism .shop-card::before,
+.shop-theme-minimalism .shop-card::after {
+    display: none !important;
+}
+
+.shop-theme-minimalism .shop-card:hover {
+    transform: translateY(-3px) !important;
+    border-color: rgba(123, 31, 95, 0.30) !important;
+    box-shadow: 0 22px 48px rgba(51, 40, 52, 0.13) !important;
+}
+
+.shop-theme-minimalism .shop-card .card-image {
+    height: 166px;
+    margin: 0;
+    background: #f9f6f1;
+    border-bottom: 1px solid rgba(77, 55, 75, 0.08);
+}
+
+.shop-theme-minimalism .shop-card .card-image img {
+    filter: drop-shadow(0 10px 18px rgba(51, 40, 52, 0.16));
+    max-height: 86%;
+    max-width: 82%;
+}
+
+.shop-theme-minimalism .shop-card:hover .card-image img {
+    transform: none;
+    filter: drop-shadow(0 10px 18px rgba(51, 40, 52, 0.16));
+}
+
+.shop-theme-minimalism .shop-card-content {
+    padding: 0.78rem 0.9rem 0.95rem;
+    text-align: left;
+}
+
+.shop-theme-minimalism .shop-card-title {
+    color: #2d2630 !important;
+    font-size: 0.88rem;
+    font-weight: 800;
+    line-height: 1.24;
+    margin-bottom: 0.3rem;
+    text-align: left;
+}
+
+.shop-theme-minimalism .shop-card-subtitle {
+    color: #7b1f5f !important;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-align: left;
+}
+
+.shop-theme-minimalism .shop-quantity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.6rem;
+    color: #8c8490;
+    font-size: 0.72rem;
+    letter-spacing: 0;
+}
+
+.shop-theme-minimalism .shop-quantity p {
+    margin: 0;
+}
+
+.shop-theme-minimalism .modal-background {
+    background: rgba(51, 40, 52, 0.38) !important;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.shop-theme-minimalism .modal-card-shop.shop-card {
+    width: min(92vw, 560px) !important;
+    max-width: 560px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: hidden;
+}
+
+.shop-theme-minimalism .modal-card-shop .modal-card-head,
+.shop-theme-minimalism .modal-card-shop .modal-card-foot {
+    background: #ffffff !important;
+    border-color: rgba(77, 55, 75, 0.10) !important;
+    padding: 1rem 1.25rem;
+}
+
+.shop-theme-minimalism .modal-card-shop .modal-card-title {
+    color: #2d2630;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+.shop-theme-minimalism .modal-card-shop .modal-card-body {
+    background: #ffffff !important;
+    color: #2d2630;
+    padding: 1.25rem;
+}
+
+.shop-theme-minimalism .shop-modal-content {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.shop-theme-minimalism .shop-modal-image-wrapper {
+    height: clamp(180px, 32vh, 280px);
+    background: #f9f6f1;
+    border: 1px solid rgba(77, 55, 75, 0.08);
+    border-radius: 10px;
+}
+
+.shop-theme-minimalism .shop-modal-image {
+    filter: drop-shadow(0 10px 18px rgba(51, 40, 52, 0.16));
+    max-height: 88%;
+    max-width: 88%;
+}
+
+.shop-theme-minimalism .shop-modal-title,
+.shop-theme-minimalism .modal-card-shop .modal-card-body .title,
+.shop-theme-minimalism .modal-content .title {
+    color: #2d2630 !important;
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-shadow: none;
+}
+
+.shop-theme-minimalism .shop-modal-cost,
+.shop-theme-minimalism .modal-card-shop .modal-card-body .subtitle {
+    color: #7b1f5f !important;
+    font-size: 0.9rem;
+    letter-spacing: 0;
+}
+
+.shop-theme-minimalism .shop-quantity-field {
+    margin: 0.25rem 0 0.75rem;
+}
+
+.shop-theme-minimalism .shop-quantity-field .button {
+    width: 2.45rem;
+    height: 2.45rem;
+    min-width: 2.45rem;
+    min-height: 2.45rem;
+    border-radius: 10px !important;
+    background: #ffffff !important;
+    color: #2d2630 !important;
+    border: 1px solid rgba(77, 55, 75, 0.14) !important;
+    box-shadow: none !important;
+}
+
+.shop-theme-minimalism .shop-quantity-field .button.is-static {
+    background: #f9f6f1 !important;
+}
+
+.shop-theme-minimalism .delete,
+.shop-theme-minimalism .modal-close {
+    top: 0.9rem;
+    right: 1rem;
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+    background: #f6f2ed !important;
+    border: 1px solid rgba(77, 55, 75, 0.10) !important;
+    box-shadow: none !important;
+}
+
+.shop-theme-minimalism .delete::before,
+.shop-theme-minimalism .delete::after,
+.shop-theme-minimalism .modal-close::before,
+.shop-theme-minimalism .modal-close::after {
+    background-color: #6f6872 !important;
+}
+
+.shop-theme-minimalism .modal-card-shop .modal-card-foot .button:not(.is-danger) {
+    background: #ffffff !important;
+    color: #2d2630 !important;
+    border: 1px solid rgba(77, 55, 75, 0.14) !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+    min-height: 42px;
+}
+
+.shop-theme-minimalism .shop-redeem-footer {
+    left: 50%;
+    right: auto;
+    bottom: 1rem;
+    width: min(100% - 2rem, 720px);
+    transform: translateX(-50%);
+    padding: 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.94) !important;
+    color: #2d2630 !important;
+    border: 1px solid rgba(77, 55, 75, 0.11) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 20px 52px rgba(51, 40, 52, 0.16) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.shop-theme-minimalism .shop-redeem-footer > div {
+    color: #6f6872;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.shop-theme-minimalism .shop-redeem-footer .button-shop {
+    min-width: 132px;
+    min-height: 42px;
+    margin-top: 0.45rem;
+}
+
+.shop-theme-minimalism .has-text-danger,
+.shop-theme-minimalism .has-text-warning {
+    color: #a13b4a !important;
+}
+
+@media (max-width: 768px) {
+    .shop-main-container.shop-theme-minimalism {
+        padding-bottom: 8.5rem;
+    }
+
+    .shop-theme-minimalism .shop-style-picker {
+        top: auto;
+        right: 0.75rem;
+        bottom: 5.25rem;
+        left: 0.75rem;
+    }
+
+    .shop-theme-minimalism .shop-main-logo {
+        height: 62px;
+        max-width: 230px;
+    }
+
+    .shop-theme-minimalism .shop-search-container {
+        padding-top: 0.5rem;
+    }
+
+    .shop-theme-minimalism .shop-search-container .column.is-one-quarter {
+        max-width: none;
+    }
+
+    .shop-theme-minimalism .shop-search-container .column.is-one-quarter img {
+        max-height: 76px;
+    }
+
+    .shop-theme-minimalism .shop-credits-container {
+        width: calc(100% - 1rem);
+    }
+
+    .shop-theme-minimalism .shop-items-grid {
+        width: calc(100% - 1rem);
+        margin-bottom: 8.5rem !important;
+    }
+
+    .shop-theme-minimalism .shop-card {
+        height: 252px;
+        min-height: 252px;
+    }
+
+    .shop-theme-minimalism .shop-card .card-image {
+        height: 140px;
+    }
+
+    .shop-theme-minimalism .shop-redeem-footer {
+        bottom: 0.75rem;
+        width: calc(100% - 1rem);
+    }
+}

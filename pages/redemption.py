@@ -1,7 +1,7 @@
 import dash
-from dash import Dash, dcc, html, dash_table, Input, Output, State, callback
+from dash import Dash, no_update,dcc, html, dash_table, Input, Output, State, callback
 import pandas as pd
-from io import BytesIO
+from io import BytesIO, StringIO
 import base64
 
 # Application Imports
@@ -21,24 +21,85 @@ from okada import LogService
 
 logger = LogService("redemption-dashboard").get_logger()
 
+def build_numeric_in_clause(series):
+    values = (
+        pd.to_numeric(series, errors="coerce")
+        .dropna()
+        .astype(int)
+        .unique()
+        .tolist()
+    )
+
+    if not values:
+        return None
+
+    return ",".join(map(str, values))
 
 def get_redemption(start, end, event_name, preview=True):
-    if len(event_name.strip()) == 0:
-        pd.DataFrame()
+    event_name = (event_name or "").strip()
     loader = SQL("datamart").get_loader()
+    eng_loader = SQL("engage").get_loader()
+    
     _limit = "LIMIT 5" if preview else "LIMIT 10000"
     query = f"""
-    SELECT universalplayerid, eventname, prizename, prizedesc, prizevalue, redemptionamount ,bucketrequired, redemptiondate, redemptiongamedate, redeemedby, returned, returneddate, returnedby, voucherno, config_sys
-    FROM dwd.dwd_mkt_promoredemption
-    WHERE eventname ILIKE '%{event_name}%'
-    AND redemptiongamedate BETWEEN  '{start}' AND '{end}'
-    {_limit}
+SELECT
+    pr.universalplayerid AS universalplayerid,
+    eventname AS eventname,
+    prizename AS prizename,
+    prizedesc AS prizedesc,
+    prizevalue AS prizevalue,
+    redemptionamount AS redemptionamount,
+    bucketrequired AS bucketrequired,
+    redemptiondate AS redemptiondate,
+    redemptiongamedate AS redemptiongamedate,
+    redeemedby AS redeemedby,
+    returned AS returned,
+    returneddate AS returneddate,
+    returnedby AS returnedby,
+    voucherno AS voucherno,
+    config_sys AS config_sys,
+    hostname_mass as hostname_mass,
+    mp.nationality as nationality
+FROM dwd.dwd_mkt_promoredemption pr
+left join dws.dws_mkt_memberprofile mp
+on pr.universalplayerid = mp.universalplayerid
+WHERE upper(eventname) LIKE '%{event_name.upper()}%'
+AND redemptiongamedate BETWEEN  '{start}' AND '{end}'
     """
+    
+    logger.info(query)
     # logger.info(f"{current_user.id} has executed \n {query}")
     df = loader.load_data(query)
     df["redemptiondate"] = pd.to_datetime(df["redemptiondate"])
-    coded = loader.load_data("SELECT uid as universalplayerid, hostname_mass, nationality FROM dws.dws_mkt_memberprofile")
-    df = df.merge(coded,on="universalplayerid",how="left")
+
+    halo_df = df[df['config_sys']=='Halo']
+    voucher_list = build_numeric_in_clause(halo_df["voucherno"])
+
+    query2 = f"""
+        select 
+        pr.id as voucherno, o.Comments, r.OverrideReason
+        from engagedb.awa.UC_PL_PrizeRedemption pr
+        join engagedb.awa.UC_X_EventDefinition ed on pr.EventDefinitionID = ed.id 
+        join engagedb.dbo.UC_L_OverrideLog o on pr.id = o.TransactionID
+        join engagedb.dbo.UC_X_OverrideReason r on o.ReasonID = r.id 
+        where pr.id in ({voucher_list})
+        order by pr.ID desc
+    """
+    logger.info(query2)
+    comments_df = eng_loader.load_data(query2)
+    if len(comments_df) >0:
+        comments_df["voucherno"] = (
+            comments_df["voucherno"]
+            .astype(str)
+            .str.strip()
+        )
+        df["voucherno"] = (
+            df["voucherno"]
+            .astype(str)
+            .str.strip()
+        )
+        df = df.merge(comments_df,on="voucherno",how="left")
+    df["redemptiondate"] = df["redemptiondate"].dt.strftime("%Y-%m-%d %H:%M:%S")
     return df
 
 
@@ -57,6 +118,7 @@ def layout():
         logger.info(f"{current_user.id} has accessed")
         return _layout()
     else:
+        # return _layout()
         return html.Div(["No Access!"])
 
 
@@ -74,7 +136,7 @@ def _layout():
                     html.Div(
                         id="redemption-form",
                         className="box",
-                        style={
+                        style={ 
                             "width": "30%",
                             "border-radius": "10px",
                             "box-shadow": "5px 5px 5px grey",
@@ -123,7 +185,6 @@ def _layout():
                                     dcc.Input(
                                         type="text",
                                         id="event-name",
-                                        required=True,
                                         className="input",
                                     ),
                                 ],
@@ -149,56 +210,60 @@ def _layout():
                     )
                 ],
             ),
+            dcc.Store(id="redemption-data-store"),
+            dcc.Download(id="download-data-redemption"),
             dcc.Loading(html.Div(id="output-data")),
         ]
     )
 
-
 @callback(
     Output("output-data", "children"),
+    Output("download-data-redemption", "data"),
     Input("submit-button", "n_clicks"),
     State("start-date", "date"),
     State("end-date", "date"),
     State("event-name", "value"),
+    prevent_initial_call=True,
 )
-def display_data(n_clicks, start_date, end_date, event_name):
+def display_and_download(n_clicks, start_date, end_date, event_name):
+
     if n_clicks and n_clicks > 0:
-        source = get_redemption(start_date, end_date, event_name)
-        df = source.head(5)
-        return html.Div(
-            [
-                dash_table.DataTable(
-                    df.to_dict("records"), [{"name": i, "id": i} for i in df.columns]
-                ),
-                html.Br(),
-                html.Button(
-                    "Export Data",
-                    id="export-button",
-                    className="button is-primary",
-                    n_clicks=0,
-                ),
-                html.Br(),
-                dcc.Download(id="download-data-redemption"),
-            ]
+
+        # Get data only once
+        df = get_redemption(start_date, end_date, event_name)
+
+        # Display table
+        table = dash_table.DataTable(
+            data=df.to_dict("records"),
+            columns=[
+                {"name": i, "id": i}
+                for i in df.columns
+            ],
+            page_size=5,
+            style_table={
+                "overflowX": "auto",
+                "maxWidth": "100%",
+            },
+            style_cell={
+                "minWidth": "140px",
+                "width": "140px",
+                "maxWidth": "260px",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap",
+            },
         )
-    else:
-        return ("",)
 
+        # File name
+        event_label = (event_name or "").strip() or "Redemption"
 
-@callback(
-    Output("download-data-redemption", "data"),
-    Input("export-button", "n_clicks"),
-    State("start-date", "date"),
-    State("end-date", "date"),
-    State("event-name", "value"),
-)
-def export_data(n_clicks, start_date, end_date, event_name):
-    if n_clicks and n_clicks > 0:
-        import time
-
-        source = get_redemption(start_date, end_date, event_name, preview=False)
-        return dcc.send_data_frame(
-            source.to_csv,
-            filename=f"{event_name}_{start_date}_{end_date}.csv",
+        # Download CSV
+        download = dcc.send_data_frame(
+            df.to_csv,
+            filename=f"{event_label}_{start_date}_{end_date}.csv",
             index=False,
         )
+
+        return table, download
+
+    return "", no_update

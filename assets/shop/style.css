@@ -1,0 +1,131 @@
+@import url("/assets/shop/shop.css");
+@import url("/assets/shop/styles/base.css");
+@import url("/assets/shop/styles/minimalism.css");
+@import url("/assets/shop/styles/liquid-glass.css");
+@import url("/assets/shop/styles/velvet-noir.css");
+@import url("/assets/shop/styles/champagne-gold.css");
+@import url("/assets/shop/styles/neon-onyx.css");
+@import url("/assets/shop/styles/silver.css");
+@import url("/assets/shop/styles/bulma-default.css");
+.shop-style-picker {
+    position: fixed;
+    top: 4.2rem;
+    right: clamp(1rem, 3vw, 2rem);
+    z-index: 1200;
+    max-width: min(92vw, 620px);
+}
+
+.shop-style-radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.35rem;
+}
+
+.shop-style-radio-label {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0.45rem 0.72rem;
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.42);
+    color: var(--shop-text-bright);
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.shop-style-radio-label:hover {
+    border-color: var(--shop-accent-2);
+    color: var(--shop-accent-1);
+}
+
+.shop-style-radio-input {
+    margin: 0 0.35rem 0 0;
+    accent-color: var(--shop-accent-2);
+}
+
+.shop-style-picker.is-hidden {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .shop-style-picker {
+        top: auto;
+        right: 0.75rem;
+        bottom: 5.25rem;
+        left: 0.75rem;
+    }
+
+    .shop-style-radio-group {
+        justify-content: center;
+    }
+
+    .shop-style-radio-label {
+        font-size: 0.72rem;
+        padding: 0.42rem 0.56rem;
+    }
+}
+/* BDEAG coding-tag looks. The active tag is applied as shop-tag-<tag>. */
+.shop-main-container.shop-tag-local {
+    --shop-accent-1: #f8d675;
+    --shop-accent-2: #0fa37f;
+    --shop-surface: rgba(13, 34, 31, 0.84);
+    --shop-text-bright: #fff8df;
+    background-color: #0d221f;
+    background-blend-mode: multiply;
+}
+
+.shop-main-container.shop-tag-korea {
+    --shop-accent-1: #48f0ff;
+    --shop-accent-2: #ff5bc8;
+    --shop-surface: rgba(12, 16, 33, 0.86);
+    --shop-text-bright: #f2fbff;
+    background-color: #0c1021;
+    background-blend-mode: screen;
+}
+
+.shop-main-container.shop-tag-na {
+    --shop-accent-1: #efc36a;
+    --shop-accent-2: #b81535;
+    --shop-surface: rgba(29, 10, 15, 0.88);
+    --shop-text-bright: #fff4e2;
+    background-color: #1d0a0f;
+    background-blend-mode: multiply;
+}
+
+.shop-main-container.shop-tag-sea {
+    --shop-accent-1: #9ff6d0;
+    --shop-accent-2: #2a89ff;
+    --shop-surface: rgba(6, 39, 55, 0.82);
+    --shop-text-bright: #eefeff;
+    background-color: #062737;
+    background-blend-mode: overlay;
+}
+
+.shop-main-container.shop-tag-japan {
+    --shop-accent-1: #f3f0e8;
+    --shop-accent-2: #d13f46;
+    --shop-surface: rgba(32, 30, 31, 0.84);
+    --shop-text-bright: #fffaf0;
+    background-color: #201e1f;
+    background-blend-mode: luminosity;
+}
+
+.shop-main-container[class*="shop-tag-"] .search-box,
+.shop-main-container[class*="shop-tag-"] .shop-card,
+.shop-main-container[class*="shop-tag-"] .modal-card-shop {
+    background: var(--shop-surface);
+    border-color: color-mix(in srgb, var(--shop-accent-1) 45%, transparent);
+}
+
+.shop-main-container[class*="shop-tag-"] .button-shop {
+    background: linear-gradient(135deg, var(--shop-accent-1), var(--shop-accent-2));
+    border: 0;
+    color: #101010;
+}

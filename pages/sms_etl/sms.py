@@ -101,6 +101,8 @@ class SMS:
         ,eventid as eventid
         FROM default.db_communications_blast
         {conditions}
+
+        order by blastdate desc
         """
         df = hloader.load_data(sql)
         if len(df)>0:

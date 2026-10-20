@@ -1,0 +1,95 @@
+.shop-main-container.shop-theme-silver {
+    --shop-theme-name: "silver";
+    --shop-accent-1: #f8fafc;
+    --shop-accent-2: #d7dde5;
+    --shop-accent-3: #9aa6b2;
+    --shop-accent-4: #4b5563;
+    --shop-base-1: #eef2f6;
+    --shop-base-2: #c9d1da;
+    --shop-base-3: #1f2933;
+    --shop-base-4: #0d1117;
+    --shop-text-bright: #f8fafc;
+    --shop-text-muted: rgba(226, 232, 240, 0.78);
+    --shop-border-accent: rgba(215, 221, 229, 0.44);
+}
+
+.shop-theme-silver .shop-card,
+.shop-theme-silver .modal-card-shop,
+.shop-theme-silver .shop-redeem-footer,
+.shop-theme-silver .shop-credits-container {
+    background: linear-gradient(150deg, rgba(248, 250, 252, 0.10), rgba(31, 41, 51, 0.58) 48%, rgba(13, 17, 23, 0.68));
+    border-color: rgba(215, 221, 229, 0.32);
+    box-shadow: 0 18px 42px rgba(3, 7, 18, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.shop-theme-silver .box-shop,
+.shop-theme-silver .shop-main-container .search-box,
+.shop-theme-silver .shop-style-radio-label,
+.shop-theme-silver .shop-refresh-wrap .button {
+    background: linear-gradient(145deg, rgba(248, 250, 252, 0.16), rgba(75, 85, 99, 0.28));
+    border-color: rgba(215, 221, 229, 0.34);
+    color: #f8fafc;
+}
+
+.shop-theme-silver .search-input,
+.shop-theme-silver .box-shop > .search-input,
+.shop-theme-silver .shop-main-container .search-input,
+.shop-theme-silver .shop-main-container .search-input:disabled {
+    background: rgba(248, 250, 252, 0.92);
+    border-color: rgba(154, 166, 178, 0.72);
+    color: #111827;
+}
+
+.shop-theme-silver .shop-title,
+.shop-theme-silver .shop-card-title,
+.shop-theme-silver .shop-modal-title,
+.shop-theme-silver .modal-card-shop .modal-card-body .title {
+    color: #f8fafc;
+    text-shadow: 0 1px 12px rgba(154, 166, 178, 0.24);
+}
+
+.shop-theme-silver .shop-card-subtitle,
+.shop-theme-silver .shop-modal-cost,
+.shop-theme-silver .modal-card-shop .modal-card-body .subtitle,
+.shop-theme-silver .shop-quantity {
+    color: rgba(226, 232, 240, 0.86);
+}
+
+.shop-theme-silver .button-shop,
+.shop-theme-silver .modal-card-shop .button.is-success,
+.shop-theme-silver .modal-card-shop .button.is-danger,
+.shop-theme-silver .shop-quantity-field .button,
+.shop-theme-silver .modal-card-shop .modal-card-foot .button:not(.is-danger) {
+    background: linear-gradient(135deg, #ffffff, #d7dde5 48%, #9aa6b2);
+    border-color: rgba(248, 250, 252, 0.56);
+    color: #10141b;
+    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.shop-theme-silver .button-shop:hover,
+.shop-theme-silver .modal-card-shop .button.is-success:hover,
+.shop-theme-silver .modal-card-shop .button.is-danger:hover,
+.shop-theme-silver .shop-quantity-field .button:hover {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+}
+
+.shop-theme-silver .shop-card .card-image {
+    background: radial-gradient(circle at top, rgba(248, 250, 252, 0.26), rgba(75, 85, 99, 0.14) 48%, rgba(13, 17, 23, 0.32));
+}
+
+.shop-theme-silver .modal-background {
+    background: rgba(8, 11, 16, 0.76);
+}
+#credits-section-bdeag,
+#credits-section-bdeag .shop-credits-container {
+    background: transparent !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+#credits-section-bdeag .shop-credits-container::before,
+#credits-section-bdeag .shop-credits-container::after {
+    background: transparent !important;
+    box-shadow: none !important;
+}

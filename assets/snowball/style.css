@@ -1,0 +1,126 @@
+/*
+ * Snowball Mania foreground composition.
+ *
+ * Keep the logo, draw badge, prize, divider, and winner result on one fixed
+ * design canvas. Browser zoom then scales the canvas as a single group instead
+ * of independently reflowing viewport-sized rows around rem-sized content.
+ */
+#container-div-snowball-mania .raffle-page-content {
+    inset: auto;
+    top: 40%;
+    left: 50%;
+    width: 1920px;
+    height: 500px;
+    grid-template-rows: 45% 23% 3px minmax(0, 1fr);
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    contain: layout paint;
+    padding-bottom: 80%;
+}
+
+/* Do not let the shared portrait fallback split the fixed composition. */
+#container-div-snowball-mania .raffle-header {
+    grid-template-rows: none;
+    align-content: normal;
+    gap: 0;
+}
+
+#container-div-snowball-mania .raffle-logo img {
+    height: 17rem !important;
+    /* padding-bottom: 8rem !important; */
+}
+
+#container-div-snowball-mania .raffle-meta {
+    position: fixed;
+    top: 5%;
+    right: 0;
+    min-width: 20rem;
+    margin: 0;
+    padding: 0.75rem 2.25rem 0.8rem 2.75rem;
+    border-right: 0;
+    border-radius: 999px 0 0 999px;
+    transform: none;
+}
+
+#container-div-snowball-mania .raffle-prize {
+    width: min(76%, 64rem);
+    column-gap: 1.2rem;
+}
+
+#container-div-snowball-mania .raffle-divider,
+#container-div-snowball-mania .raffle-winner {
+    width: 72%;
+    margin-top:2rem;
+}
+
+#container-div-snowball-mania .raffle-winner {
+    grid-template-columns: max-content max-content;
+    justify-content: center;
+    column-gap: 2.5rem;
+    padding-top: 0;
+    margin-top: -5rem;
+}
+
+#container-div-snowball-mania .raffle-winner-id,
+#container-div-snowball-mania .raffle-winner-name {
+    grid-column: auto;
+}
+
+#container-div-snowball-mania .raffle-winner-id.is-message {
+    grid-column: 1 / -1;
+}
+
+#container-div-snowball-mania .raffle-font.raffle-meta-value {
+    font-size: 1.15rem !important;
+}
+
+#container-div-snowball-mania .raffle-font.raffle-time {
+    font-size: 1.2rem !important;
+}
+
+#container-div-snowball-mania .raffle-prize-prefix,
+#container-div-snowball-mania .raffle-prize-suffix {
+    font-size: 2.4rem;
+}
+
+#container-div-snowball-mania .raffle-prize-amount {
+    font-size: 8rem;
+}
+
+#container-div-snowball-mania .raffle-prize-custom {
+    font-size: 3rem;
+}
+
+#container-div-snowball-mania .raffle-font.raffle-winner-id {
+    font-size: 3.5rem !important;
+}
+
+#container-div-snowball-mania .raffle-font.raffle-winner-name,
+#container-div-snowball-mania .raffle-font.raffle-winner-id.is-message {
+    font-size: 3rem !important;
+}
+
+/* Snowball Mania typography only. */
+#container-div-snowball-mania .raffle-winner-id.snowball-font,
+#container-div-snowball-mania .raffle-winner-name.snowball-font,
+#container-div-snowball-mania .raffle-prize {
+    background: none !important;
+    background-image: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-stroke: 1px #6b3e1e;
+}
+
+#container-div-snowball-mania .raffle-winner-id.snowball-font,
+#container-div-snowball-mania .raffle-winner-name.snowball-font {
+    color: var(--raffle-gold) !important;
+    -webkit-text-fill-color: var(--raffle-gold) !important;
+}
+
+#container-div-snowball-mania .raffle-winner-id.snowball-font {
+    -webkit-text-stroke-width: 1px;
+}
+
+#container-div-snowball-mania .raffle-winner-name.snowball-font {
+    -webkit-text-stroke-width: 1px;
+}

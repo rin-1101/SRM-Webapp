@@ -3,11 +3,15 @@ html, body {
     margin: 0;         /* Removes default margin that may add space */
 }
 
+
 /* #result-fuwa{
     margin-top: -180px;
     margin-bottom: -20px;
 } */
 
+.shop-style-radio-group{
+    visibility: hidden;
+}
 #prize-fuwa{
     width:100%;
 }

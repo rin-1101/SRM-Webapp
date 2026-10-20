@@ -1,0 +1,42 @@
+.shop-main-container.shop-theme-liquid-glass {
+    --shop-accent-1: #f7fbff;
+    --shop-accent-2: #b9e7ff;
+    --shop-accent-3: #62bde6;
+    --shop-accent-4: #2d7899;
+    --shop-base-1: rgba(255, 255, 255, 0.20);
+    --shop-base-2: rgba(255, 255, 255, 0.12);
+    --shop-base-3: rgba(10, 18, 28, 0.68);
+    --shop-base-4: #07101a;
+    --shop-border-accent: rgba(255, 255, 255, 0.32);
+    --shop-shadow-deep: rgba(0, 0, 0, 0.42);
+}
+
+.shop-theme-liquid-glass .shop-card,
+.shop-theme-liquid-glass .modal-card-shop,
+.shop-theme-liquid-glass .shop-redeem-footer,
+.shop-theme-liquid-glass .shop-credits-container {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0.08));
+    border: 1px solid rgba(255, 255, 255, 0.30);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.34);
+    backdrop-filter: blur(18px) saturate(135%);
+    -webkit-backdrop-filter: blur(18px) saturate(135%);
+}
+
+.shop-theme-liquid-glass .shop-card::after {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.28), transparent 66%);
+}
+
+.shop-theme-liquid-glass .shop-main-container .search-box,
+.shop-theme-liquid-glass .box-shop {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.30);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.shop-theme-liquid-glass .button-shop,
+.shop-theme-liquid-glass .modal-card-shop .button.is-success,
+.shop-theme-liquid-glass .modal-card-shop .button.is-danger {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(185, 231, 255, 0.82));
+    color: #07101a;
+}

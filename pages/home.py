@@ -9,11 +9,10 @@ dash.register_page(__name__, path="/", redirect_from=["/home"])
 
 
 def layout():
-    if current_user.is_authenticated:
+    if current_user.is_authenticated and current_user.id in ACCOUNTS:
         accessible_pages = get_accessible_pages_by_role(
             ACCOUNTS[current_user.id]["role"]
         )
-        print(accessible_pages)
         return html.Div(
             [
                 html.H1("Accessible Reports:", className="title"),
@@ -30,10 +29,18 @@ def layout():
                 ),
             ]
         )
-    else:
+    if current_user.is_authenticated:
         return html.Div(
             [
-                html.Label("You have not logged in. Please "),
-                dcc.Link("login", href="/login"),
+                html.Label("Your account is authenticated but is not configured for this app. Please contact your administrator."),
+                html.Br(),
+                dcc.Link("Logout", href="/logout"),
             ]
         )
+
+    return html.Div(
+        [
+            html.Label("You have not logged in. Please "),
+            dcc.Link("login", href="/login"),
+        ]
+    )

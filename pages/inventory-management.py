@@ -17,6 +17,8 @@ DB_FOLDER = r"\\ominfstdpsd10001p-fs.int.okadamanila.com\Casino\Strategic Market
 ASSETS_FOLDER = r"\\ominfstdpsd10001p-fs.int.okadamanila.com\Casino\Strategic Marketing\Database Admin\ETL\Applications\reports\assets\inventory"
 TABLE_NAME = "prize_pool"
 USER = "dash_user"
+FULL_INVENTORY_VALUE = 99999
+ZERO_INVENTORY_VALUE = 0
 
 def get_db_files():
     files = [f for f in os.listdir(DB_FOLDER) if f.endswith(".db")]
@@ -108,6 +110,12 @@ def _layout():
                 page_size=10
             )
         ]),
+        html.Div(className="columns", children=[
+            html.Div(className="column", children=[
+                html.Button("full inventory", id="btn-full-inventory", n_clicks=0, className="button is-success"),
+                html.Button("zero inventory", id="btn-zero-inventory", n_clicks=0, className="button is-dark")
+            ])
+        ]),
 
         html.Hr(),
 
@@ -172,6 +180,8 @@ import base64
     Input("btn-add", "n_clicks"),
     Input("btn-update", "n_clicks"),
     Input("btn-delete", "n_clicks"),
+    Input("btn-full-inventory", "n_clicks"),
+    Input("btn-zero-inventory", "n_clicks"),
     Input("upload-data", "contents"),
     State("search-name", "value"),
     State("search-category", "value"),
@@ -186,7 +196,7 @@ import base64
     State("inventory-table", "selected_rows")
 )
 def manage_inventory_and_upload(
-        selected_db, btn_search, btn_add, btn_update, btn_delete, upload_contents,
+        selected_db, btn_search, btn_add, btn_update, btn_delete, btn_full_inventory, btn_zero_inventory, upload_contents,
         search_name, search_category, search_min_cost, search_max_cost,
         input_id, input_name, input_cost, input_category, input_inventory,
         table_data, selected_rows
@@ -261,7 +271,7 @@ def manage_inventory_and_upload(
 
             if result is True:
                 df = inv.show_inventory()
-                return df.to_dict("records"), f"✅ Item ID {input_id} updated successfully.", dash.no_update
+                return df.to_dict('records'), f"✅ Item ID {input_id} updated successfully.", dash.no_update
             else:
                 return dash.no_update, f"❌ Error updating item: {result}", dash.no_update
 
@@ -282,6 +292,25 @@ def manage_inventory_and_upload(
                 return df.to_dict('records'), f"Item with ID {item_id} deleted successfully.", dash.no_update
             else:
                 return dash.no_update, f"Error deleting item: {result}", dash.no_update
+
+        # Handle full / zero inventory buttons for the selected row
+        elif triggered_id in ["btn-full-inventory", "btn-zero-inventory"]:
+            if not selected_rows or not table_data:
+                return dash.no_update, "Please select an item first.", dash.no_update
+
+            row_idx = selected_rows[0]
+            row = table_data[row_idx]
+            item_id = row.get("ID")
+            if item_id is None:
+                return dash.no_update, "Selected item has no ID.", dash.no_update
+
+            new_inventory = FULL_INVENTORY_VALUE if triggered_id == "btn-full-inventory" else ZERO_INVENTORY_VALUE
+            result = inv.update_item(int(item_id), inventory=new_inventory)
+            if result is True:
+                df = inv.show_inventory()
+                return df.to_dict('records'), f"Item ID {item_id} inventory set to {new_inventory}.", dash.no_update
+            else:
+                return dash.no_update, f"Error updating item ID {item_id}: {result}", dash.no_update
 
         else:
             # Default action when no button is clicked

@@ -1,8 +1,14 @@
 import os
 import importlib
-import dash
 
 def load_pages(*directories):
+    """Import page modules from directories.
+
+    Dash's built-in `use_pages=True` already registers pages that call
+    `dash.register_page()` in their module. This helper should only import
+    modules; it must not register them again with inferred paths because that
+    can overwrite explicit route constants such as `/dyson-luxe-rewards`.
+    """
     base_path = os.path.dirname(__file__)  # Get directory of the script
     for directory in directories:
         full_path = os.path.join(base_path, "..", directory)  # Adjust for relative paths
@@ -17,12 +23,7 @@ def load_pages(*directories):
                 module_name = filename[:-3]  # Strip ".py" extension
                 try:
                     module = importlib.import_module(f"{module_path}.{module_name}")
-                    importlib.reload(module)  # Reload to ensure updates are reflected
-                    
-                    # Ensure the module has the layout attribute and register the page
-                    if hasattr(module, "layout"):
-                        dash.register_page(module.__name__, path=f"/{module_name}")
-                    else:
-                        print(f"Warning: {module_name} does not have a layout defined and is not registered as a Dash page.")
+                    if not hasattr(module, "layout"):
+                        print(f"Warning: {module_name} does not have a layout defined.")
                 except Exception as e:
                     print(f"Error importing {module_name}: {str(e)}")

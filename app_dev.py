@@ -51,6 +51,9 @@ def check_auth():
 
 @server.before_request
 def redirect_ip_to_domain():
+    if request.path == "/dev-home":
+        return None
+
     if request.host.startswith("10.36.21.60"):
         return redirect("https://srm.okadamanila.com:8050", code=301)
     
@@ -180,7 +183,7 @@ def on_page_load(pathname):
         return 'invisible'  # Hide navbar on this page
     return ''  
 # testssl (file://OMPYTSRVD00001V/testssl)
-CERT_PATH = f"\\\\OMPYTSRVD00001V\\testssl"
+CERT_PATH = f"\\\\OMPYTSRVD00001V\\datamart\\star_okadamanila_com_1598659671"
 
 
 if __name__ == "__main__":
@@ -188,7 +191,7 @@ if __name__ == "__main__":
         debug=True,
         host="0.0.0.0",
         port=8050,
-        # ssl_context=(f"{CERT_PATH}\\wildcard_okadamanila_com.pem", f"{CERT_PATH}\\wildcard_okadamanila_com_key.pem"),
+        ssl_context=(f"{CERT_PATH}\\wildcard_okadamanila_com.pem", f"{CERT_PATH}\\wildcard_okadamanila_com_key.pem"),
     )
 
 

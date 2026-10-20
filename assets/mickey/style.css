@@ -1,0 +1,208 @@
+/* Mickey: plum and midnight surfaces with the artwork's warm gold accents. */
+#main-container-mickey {
+    --shop-accent-1: #ffe5a0;
+    --shop-accent-2: #efbd48;
+    --shop-accent-3: #b77b1e;
+    --shop-accent-4: #785018;
+    --shop-base-1: #511039;
+    --shop-base-2: #310b29;
+    --shop-base-3: #18091f;
+    --shop-base-4: #070e20;
+    --shop-text-bright: #fff7e7;
+    --shop-text-muted: #ddc9d4;
+    --shop-border-accent: rgba(239, 189, 72, 0.38);
+    --tablet-ink: #fff7e7;
+    --tablet-muted: #ddc9d4;
+    --tablet-accent: #ffe5a0;
+    --tablet-accent-2: #efbd48;
+    --tablet-surface: rgba(40, 8, 33, 0.84);
+    --tablet-surface-strong: #200a25;
+    --tablet-line: rgba(239, 189, 72, 0.3);
+    --tablet-danger: #ffb4bf;
+    background-color: #070e20;
+}
+
+#main-container-mickey .shop-page-logo-wrap {
+    min-height: 154px;
+    padding: 1.4rem 1rem 0.8rem;
+}
+
+#main-container-mickey .shop-page-logo {
+    width: min(76vw, 420px);
+    max-width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.5));
+}
+
+#main-container-mickey .shop-member-wallet,
+#main-container-mickey .shop-catalogue-tools,
+#main-container-mickey .shop-product-card {
+    background: linear-gradient(145deg, rgba(73, 12, 51, 0.1), rgba(10, 15, 35, 0.1));
+    border-color: var(--tablet-line);
+    box-shadow: 0 14px 36px rgba(3, 2, 12, 0.1);
+}
+
+#main-container-mickey .shop-wallet-sticky,
+#main-container-mickey .shop-redeem-footer {
+    background: linear-gradient(110deg, rgba(40, 8, 33, 0.1), rgba(7, 14, 32, 0.1));
+    border-color: var(--tablet-line);
+}
+
+#main-container-mickey .shop-wallet-metric {
+    background: rgba(255, 231, 176, 0.06);
+}
+
+#main-container-mickey .shop-wallet-metric.is-balance {
+    border: 1px solid rgba(239, 189, 72, 0.42);
+    background: linear-gradient(135deg, rgba(239, 189, 72, 0.19), rgba(239, 189, 72, 0.06));
+}
+
+#main-container-mickey .shop-wallet-metric.is-balance .shop-wallet-value {
+    color: var(--tablet-accent);
+    -webkit-text-fill-color: var(--tablet-accent);
+}
+
+#main-container-mickey .shop-member-search-input,
+#main-container-mickey .shop-catalogue-search,
+#main-container-mickey .shop-identity-field input {
+    background: rgba(7, 14, 32, 0.3);
+    border-color: var(--tablet-line);
+}
+
+#main-container-mickey .shop-member-search-input::placeholder,
+#main-container-mickey .shop-catalogue-search::placeholder {
+    color: #cbb8c6;
+}
+
+/* Dash versions with input wrappers should retain the same field treatment. */
+#main-container-mickey .shop-member-search-input .dash-input-stepper {
+    display: none;
+}
+
+#main-container-mickey .shop-member-search-input .dash-input-element {
+    min-height: 50px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+#main-container-mickey .shop-identity-field .dash-input-container,
+#main-container-mickey .shop-wallet-value {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    opacity: 1;
+}
+
+#main-container-mickey .shop-wallet-value input {
+    padding: 0;
+    border: 0;
+    color: var(--tablet-ink);
+    background: transparent;
+    text-align: center;
+    font: inherit;
+    opacity: 1;
+    -webkit-text-fill-color: var(--tablet-ink);
+}
+
+#main-container-mickey .shop-wallet-metric.is-balance .shop-wallet-value input {
+    color: var(--tablet-accent);
+    -webkit-text-fill-color: var(--tablet-accent);
+}
+
+#main-container-mickey input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+#main-container-mickey input[type="number"]::-webkit-inner-spin-button,
+#main-container-mickey input[type="number"]::-webkit-outer-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+}
+
+#main-container-mickey .shop-primary-button,
+#main-container-mickey .shop-basket-button {
+    color: #281028;
+    background: linear-gradient(135deg,
+  rgba(255, 233, 167, 0.7) 0%,
+  rgba(239, 189, 72, 0.7) 58%,
+  rgba(206, 141, 38, 0.7) 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 250, 220, 0.65), 0 6px 18px rgba(0, 0, 0, 0.24);
+}
+#shop-product-image {
+    opacity: 0.2;
+}
+#main-container-mickey .shop-primary-button:hover,
+#main-container-mickey .shop-basket-button:hover {
+    filter: brightness(1.08);
+}
+
+#main-container-mickey button:focus-visible,
+#main-container-mickey input:focus-visible,
+#main-container-mickey .shop-category-chip-label:has(input:focus-visible) {
+    outline: 2px solid var(--tablet-accent);
+    outline-offset: 3px;
+}
+
+#main-container-mickey .shop-floating-refresh,
+#main-container-mickey .shop-secondary-button,
+#main-container-mickey .shop-stepper-button,
+#main-container-mickey .shop-basket-adjust,
+#main-container-mickey .shop-basket-remove {
+    color: var(--tablet-accent);
+    background: #29102c;
+    border-color: var(--tablet-line);
+}
+
+#main-container-mickey .shop-category-chip-label {
+    background: rgba(7, 14, 32, 0.5);
+}
+
+#main-container-mickey .shop-category-chip-label:has(input:checked) {
+    color: #281028;
+    background: var(--tablet-accent);
+    border-color: var(--tablet-accent);
+}
+
+#main-container-mickey .shop-product-image-wrap,
+#main-container-mickey .shop-modal-image-wrapper {
+    background: transparent;
+}
+
+#main-container-mickey .shop-product-card:hover {
+    border-color: var(--tablet-accent-2);
+}
+
+#main-container-mickey .shop-product-name {
+    display: block;
+    min-height: 0;
+    overflow: visible;
+    overflow-wrap: anywhere;
+    -webkit-line-clamp: unset;
+}
+
+#main-container-mickey .shop-product-price,
+#main-container-mickey .shop-cart-total,
+#main-container-mickey .shop-basket-line-total {
+    color: var(--tablet-accent);
+}
+
+#main-container-mickey .modal-background {
+    background: rgba(7, 3, 18, 0.82);
+}
+
+#main-container-mickey .modal-card-shop {
+    background: linear-gradient(150deg, #3a0c30, #100d21);
+    border-color: rgba(239, 189, 72, 0.45);
+}
+
+@media (max-width: 480px) {
+    #main-container-mickey .shop-page-logo-wrap {
+        min-height: 130px;
+        padding-top: 1rem;
+    }
+}
